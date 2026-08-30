@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masons Roofing & Construction — Merrionette Park, IL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161616;
+    --gray:#5B5B5B;
+    --line:#E7E5E1;
+    --paper:#FFFFFF;
+    --surface:#F7F6F3;
+    --amber:#F2A93C;
+    --amber-dark:#D98C1F;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    line-height:1.1;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  a:focus-visible, button:focus-visible{outline:3px solid var(--amber-dark); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  /* ---------- header ---------- */
+  header{
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:18px 0;
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .logo{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:19px;
+    letter-spacing:0.01em;
+  }
+  .logo span{ color:var(--amber-dark); }
+  nav{ display:flex; align-items:center; gap:32px; }
+  .nav-links{ display:flex; gap:30px; font-size:14.5px; font-weight:500; color:var(--ink); }
+  .nav-links a{ opacity:0.82; transition:opacity .15s; }
+  .nav-links a:hover{ opacity:1; }
+  @media (max-width:800px){ .nav-links{ display:none; } }
+  .btn-quote{
+    background:var(--amber);
+    color:#231404;
+    font-weight:700;
+    font-size:14px;
+    padding:12px 22px;
+    border-radius:8px;
+    display:inline-block;
+    transition:background .15s, transform .15s;
+  }
+  .btn-quote:hover{ background:var(--amber-dark); transform:translateY(-1px); color:#fff; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:var(--surface);
+    padding:76px 0 68px;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  @media (max-width:860px){ .hero .wrap{grid-template-columns:1fr;} }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#FDECD1;
+    color:var(--amber-dark);
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:7px 14px;
+    border-radius:20px;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(38px,5.2vw,58px);
+    margin-bottom:18px;
+  }
+  .hero h1 span{ color:var(--amber-dark); }
+  .hero p.lede{
+    font-size:17px;
+    color:var(--gray);
+    max-width:46ch;
+    margin-bottom:30px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-outline{
+    border:1.5px solid var(--ink);
+    padding:12px 22px;
+    border-radius:8px;
+    font-weight:600;
+    font-size:14px;
+    display:inline-block;
+    transition:background .15s, color .15s;
+  }
+  .btn-outline:hover{ background:var(--ink); color:#fff; }
+
+  .hero-stats{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:8px;
+    box-shadow:0 18px 40px -22px rgba(20,20,20,0.25);
+  }
+  .hero-stats .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 16px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-stats .row:last-child{ border-bottom:none; }
+  .hero-stats .num{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:26px;
+    color:var(--ink);
+  }
+  .hero-stats .label{
+    font-size:13px;
+    color:var(--gray);
+    text-align:right;
+    max-width:16ch;
+  }
+
+  /* ---------- section shell ---------- */
+  section{ padding:78px 0; }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:clamp(30px,4vw,42px); }
+  .section-head p{ color:var(--gray); max-width:40ch; font-size:15px; }
+
+  /* ---------- project grid (signature: photo-card overlay, matches reference) ---------- */
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  @media (max-width:900px){ .project-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:620px){ .project-grid{ grid-template-columns:1fr; } }
+
+  .project-card{
+    position:relative;
+    aspect-ratio:4/3;
+    border-radius:14px;
+    overflow:hidden;
+    background:#20242A;
+    isolation:isolate;
+  }
+  .project-card .art{
+    position:absolute; inset:0;
+  }
+  .project-card .art img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  /* Photo-style textures rendered entirely in CSS — no external network calls, so these always display */
+  .art--roof-1{ background:
+      repeating-linear-gradient(115deg, #454B54 0 3px, #3A3F47 3px 46px),
+      linear-gradient(200deg,#20242A,#3A3F47);
+      position:relative; }
+  .art--roof-1::after{ content:""; position:absolute; inset:0;
+      background:linear-gradient(200deg, rgba(255,255,255,0.06), transparent 60%); }
+  .art--roof-2{ background:
+      repeating-linear-gradient(115deg, #55442F 0 3px, #46372B 3px 46px),
+      linear-gradient(200deg,#241B14,#46372B); }
+  .art--build-1{ background:
+      linear-gradient(155deg,#3A5C4E 0%, #2E4A3F 45%, #26382F 100%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 64px); }
+  .art--mason-1{ background:
+      repeating-linear-gradient(0deg, #6B382C 0 18px, #5A2E24 18px 20px),
+      repeating-linear-gradient(90deg, transparent 0 44px, rgba(0,0,0,0.22) 44px 46px); }
+  .art--mason-2{ background:
+      repeating-linear-gradient(0deg, #5F332A 0 18px, #4F2A23 18px 20px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.22) 0 2px, transparent 2px 46px); }
+  .art--roof-3{ background:
+      linear-gradient(155deg,#454E56 0%, #33393F 45%, #262B30 100%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.04) 0 3px, transparent 3px 46px); }
+  .project-card .scrim{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 42%, rgba(0,0,0,0.72) 100%);
+  }
+  .project-card .info{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:18px 20px;
+    color:#fff;
+  }
+  .project-card .info .title{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:17px;
+    margin-bottom:3px;
+  }
+  .project-card .info .loc{
+    font-size:12.5px;
+    color:#E4E1D9;
+    opacity:0.9;
+  }
+  .project-card{ transition:transform .25s ease; }
+  .project-card:hover{ transform:translateY(-4px); }
+
+  /* project photos now sourced live from Unsplash — see .art img in each card */
+
+  .reason-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:28px 44px;
+  }
+  @media (max-width:760px){ .reason-grid{ grid-template-columns:1fr; } }
+  .reason-item{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+  }
+  .reason-item .check{
+    flex:0 0 auto;
+    width:36px; height:36px;
+    border-radius:50%;
+    background:#FDECD1;
+    color:var(--amber-dark);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800;
+    font-size:16px;
+  }
+  .reason-item h3{
+    font-size:17.5px;
+    margin-bottom:5px;
+  }
+  .reason-item p{
+    font-size:14px;
+    color:var(--gray);
+  }
+
+  /* ---------- why us ---------- */
+  .why{ background:var(--surface); }
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  @media (max-width:860px){ .why-grid{ grid-template-columns:repeat(2,1fr); } }
+  .why-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:26px 22px;
+  }
+  .why-card .big{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:30px;
+    color:var(--amber-dark);
+    margin-bottom:6px;
+  }
+  .why-card p{ font-size:13.5px; color:var(--gray); }
+
+  /* ---------- service area ---------- */
+  .area-inner{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  @media (max-width:860px){ .area-inner{ grid-template-columns:1fr; } }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+  .chip{
+    font-size:13px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    padding:8px 14px;
+    border-radius:20px;
+    color:var(--ink);
+  }
+  .map-block{
+    background:var(--ink);
+    aspect-ratio:4/3;
+    border-radius:14px;
+    overflow:hidden;
+    position:relative;
+  }
+  .map-block iframe{
+    width:100%; height:100%;
+    border:0; display:block;
+    filter:grayscale(0.15) contrast(1.05);
+  }
+  .map-block .pin-label{
+    position:absolute;
+    left:14px; bottom:14px;
+    background:rgba(22,22,22,0.85);
+    color:#fff;
+    padding:8px 14px;
+    border-radius:8px;
+    font-size:12px;
+    letter-spacing:0.04em;
+    font-family:'Inter',sans-serif;
+    pointer-events:none;
+  }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background:var(--ink);
+    color:#fff;
+    text-align:center;
+    padding:70px 0;
+  }
+  .cta-band h2{ font-size:clamp(30px,4.5vw,48px); margin-bottom:14px; color:#fff; }
+  .cta-band p{ color:#C9C6BE; margin-bottom:28px; font-size:15.5px; }
+
+  footer{
+    background:#0F0F0F;
+    color:#9A968C;
+    padding:34px 0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:14px;
+  }
+  footer .foot-brand{ font-family:'Poppins',sans-serif; font-weight:700; color:#fff; font-size:16px; }
+  footer .foot-note{ font-size:12px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">MASONS ROOFING <span>& CONSTRUCTION</span></div>
+    <nav>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#why">Why Us</a>
+        <a href="#area">Service Area</a>
+      </div>
+      <a class="btn-quote" href="tel:+17085395962">Get Free Quote</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Family Owned · Since 1994</div>
+      <h1>Roofing &amp; Construction Done <span>Right the First Time.</span></h1>
+      <p class="lede">An 18-person crew serving the Chicago Southland — roofing, masonry, and general construction backed by three decades of work that lasts.</p>
+      <div class="hero-ctas">
+        <a class="btn-quote" href="tel:+17085395962">Get Free Quote</a>
+        <a class="btn-outline" href="#projects">See Our Work</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="row"><span class="num">31 yrs</span><span class="label">In business, family run</span></div>
+      <div class="row"><span class="num">18</span><span class="label">Person crew, no subs</span></div>
+      <div class="row"><span class="num">$0</span><span class="label">Cost for an estimate</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Recent Work</h2>
+      <p>A sample of the roofing, masonry, and construction jobs we've completed across the Southland.</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="art"><img src="https://images.unsplash.com/photo-1635424709961-f3a150459ad4?auto=format&fit=crop&w=800&q=70" alt="Roofers replacing shingles on a residential roof" loading="lazy"></div>
+        <div class="scrim"></div>
+        <div class="info"><div class="title">Full Roof Replacement</div><div class="loc">Merrionette Park, IL</div></div>
+      </div>
+      <div class="project-card">
+        <div class="art"><img src="https://images.unsplash.com/photo-1635424824800-692767998d07?auto=format&fit=crop&w=800&q=70" alt="Roofer repairing storm damage on a home" loading="lazy"></div>
+        <div class="scrim"></div>
+        <div class="info"><div class="title">Storm Damage Repair</div><div class="loc">Oak Lawn, IL</div></div>
+      </div>
+      <div class="project-card">
+        <div class="art"><img src="https://images.unsplash.com/photo-1778164909438-c27c813cb480?auto=format&fit=crop&w=800&q=70" alt="New home addition under construction" loading="lazy"></div>
+        <div class="scrim"></div>
+        <div class="info"><div class="title">Home Addition</div><div class="loc">Blue Island, IL</div></div>
+      </div>
+      <div class="project-card">
+        <div class="art"><img src="https://images.unsplash.com/photo-1704005445445-2747074be8ac?auto=format&fit=crop&w=800&q=70" alt="Mason tuckpointing a brick chimney" loading="lazy"></div>
+        <div class="scrim"></div>
+        <div class="info"><div class="title">Chimney Tuckpointing</div><div class="loc">Evergreen Park, IL</div></div>
+      </div>
+      <div class="project-card">
+        <div class="art"><img src="https://images.unsplash.com/photo-1701850009190-2859ba2aeea6?auto=format&fit=crop&w=800&q=70" alt="Mason applying mortar during brick restoration" loading="lazy"></div>
+        <div class="scrim"></div>
+        <div class="info"><div class="title">Brick Masonry Restoration</div><div class="loc">Alsip, IL</div></div>
+      </div>
+      <div class="project-card">
+        <div class="art"><img src="https://images.unsplash.com/photo-1755114203680-d39d95efa82c?auto=format&fit=crop&w=800&q=70" alt="Aerial view of a house with a flat grey roof" loading="lazy"></div>
+        <div class="scrim"></div>
+        <div class="info"><div class="title">Flat Roof Install</div><div class="loc">Chicago, IL</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="why">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What We Do</h2>
+      <p>No job too big or too small — one crew, start to finish.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="big">01</div>
+        <p><strong>Roof Replacement</strong><br>Full tear-off and re-roof for homes and small commercial buildings.</p>
+      </div>
+      <div class="why-card">
+        <div class="big">02</div>
+        <p><strong>Roof Repair</strong><br>Leaks and storm damage fixed fast, with an honest read on what's needed.</p>
+      </div>
+      <div class="why-card">
+        <div class="big">03</div>
+        <p><strong>Tuckpointing &amp; Masonry</strong><br>Brick and mortar repair, chimney rebuilds that hold up through winter.</p>
+      </div>
+      <div class="why-card">
+        <div class="big">04</div>
+        <p><strong>General Construction</strong><br>Additions, repairs, and everything in between.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Why Pick Us</h2>
+      <p>A few honest reasons homeowners in the Southland call us first.</p>
+    </div>
+    <div class="reason-grid">
+      <div class="reason-item">
+        <div class="check">✓</div>
+        <div>
+          <h3>31 Years, One Family</h3>
+          <p>Family owned and operated in Merrionette Park since 1994 — we've built our name on repeat customers and referrals, not ad spend.</p>
+        </div>
+      </div>
+      <div class="reason-item">
+        <div class="check">✓</div>
+        <div>
+          <h3>One Crew, No Subcontractors</h3>
+          <p>Our 18-person team handles every job start to finish, so you always know exactly who's on your property.</p>
+        </div>
+      </div>
+      <div class="reason-item">
+        <div class="check">✓</div>
+        <div>
+          <h3>Roofing &amp; Masonry Under One Roof</h3>
+          <p>Most contractors specialize in one trade. We handle roofing, tuckpointing, and general construction, so you're not juggling multiple crews.</p>
+        </div>
+      </div>
+      <div class="reason-item">
+        <div class="check">✓</div>
+        <div>
+          <h3>Free, No-Pressure Estimates</h3>
+          <p>An honest read on what your project actually needs — no upsells, no obligation to book.</p>
+        </div>
+      </div>
+      <div class="reason-item">
+        <div class="check">✓</div>
+        <div>
+          <h3>Built for Chicago Winters</h3>
+          <p>Three decades of local experience means we know exactly how the weather here stresses roofs and brick, and we build accordingly.</p>
+        </div>
+      </div>
+      <div class="reason-item">
+        <div class="check">✓</div>
+        <div>
+          <h3>Licensed &amp; Insured</h3>
+          <p>Full protection for your property and peace of mind on every job, big or small.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="area">
+  <div class="wrap area-inner">
+    <div>
+      <h2>Serving Merrionette Park &amp; the Southland</h2>
+      <p style="color:var(--gray); max-width:46ch; margin-top:14px; font-size:15px;">Based in Merrionette Park, our crews work throughout the south Chicago suburbs — call to confirm we cover your address.</p>
+      <div class="chip-row">
+        <span class="chip">Merrionette Park</span>
+        <span class="chip">Oak Lawn</span>
+        <span class="chip">Evergreen Park</span>
+        <span class="chip">Alsip</span>
+        <span class="chip">Blue Island</span>
+        <span class="chip">Chicago — South Side</span>
+      </div>
+    </div>
+    <div class="map-block">
+      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-87.7250%2C41.6720%2C-87.6770%2C41.6960&amp;layer=mapnik&amp;marker=41.6838%2C-87.7005" loading="lazy" title="Map of Merrionette Park, IL"></iframe>
+      <div class="pin-label">MERRIONETTE PARK, IL</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Let's Look At Your Roof.</h2>
+    <p>Free, no-pressure estimates — call or send a few photos to get started.</p>
+    <a class="btn-quote" href="tel:+17085395962">(708) 539-5962</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="foot-brand">MASONS ROOFING & CONSTRUCTION</span>
+    <span class="foot-note">Merrionette Park, IL · Est. 1994 · Licensed &amp; Insured</span>
+  </div>
+</footer>
+
+</body>
+</html>
