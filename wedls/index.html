@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedl's Hamburger Stand &amp; Ice Cream Parlor — Jefferson, WI</title>
+<meta name="description" content="Since 1916. A 64-square-foot hamburger stand in downtown Jefferson, Wisconsin, still griddling 1930s-style burgers with grilled onions in a century-old cast iron skillet — plus shakes, malts and sundaes across the sidewalk.">
+<meta name="theme-color" content="#B3232B">
+<meta property="og:title" content="Wedl's Hamburger Stand &amp; Ice Cream Parlor">
+<meta property="og:description" content="Since 1916 — 1930s-style burgers with grilled onions, griddled in a century-old cast iron skillet. 200 E. Racine St, Jefferson, WI.">
+<meta property="og:type" content="restaurant">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23B3232B'/><path d='M6 13c0-4 4.5-7 10-7s10 3 10 7z' fill='%23E8A31D'/><rect x='5' y='15' width='22' height='3' rx='1.5' fill='%234A3226'/><path d='M6 21h20c0 3-2 4-4 4H10c-2 0-4-1-4-4z' fill='%23E8A31D'/></svg>">
+<style>
+  :root{
+    --cream:#FBF3E4;
+    --paper:#FFFBF3;
+    --ink:#1E1A17;
+    --soft:#5C5148;
+    --red:#B3232B;
+    --red-dark:#8C171E;
+    --mustard:#E8A31D;
+    --deep:#2C1F1A;
+    --line:#E2D6BE;
+    --shadow:0 18px 40px -22px rgba(44,31,26,.45);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;line-height:1.05;letter-spacing:.005em;}
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--red);
+  }
+  a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:4px;}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+
+  /* ---------- banner ---------- */
+  .banner{
+    background:var(--deep);color:#F6E7C8;
+    font-size:13.5px;letter-spacing:.04em;text-align:center;padding:9px 16px;
+  }
+  .banner strong{color:var(--mustard);}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:60;
+    background:rgba(251,243,228,.94);
+    backdrop-filter:saturate(150%) blur(8px);
+    border-bottom:3px solid var(--deep);
+  }
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:14px;padding-bottom:14px;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand .mark{
+    width:42px;height:42px;flex:none;border-radius:10px;background:var(--red);
+    display:grid;place-items:center;box-shadow:0 4px 0 var(--red-dark);
+  }
+  .brand .name{font-family:'Alfa Slab One',serif;font-size:19px;line-height:1;}
+  .brand .sub{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-top:4px;}
+  nav ul{display:flex;gap:26px;list-style:none;align-items:center;}
+  nav a{
+    text-decoration:none;font-weight:600;font-size:15px;padding:4px 0;
+    border-bottom:2px solid transparent;transition:border-color .15s,color .15s;
+  }
+  nav a:hover{color:var(--red);border-bottom-color:var(--red);}
+  .btn{
+    display:inline-block;text-decoration:none;font-weight:700;
+    background:var(--red);color:#fff;padding:13px 22px;border-radius:999px;
+    box-shadow:0 4px 0 var(--red-dark);transition:transform .12s,box-shadow .12s;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--red-dark);}
+  .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--deep);box-shadow:none;}
+  .btn.ghost:hover{background:var(--deep);color:var(--cream);transform:none;}
+  .btn.cream{background:var(--mustard);color:var(--deep);box-shadow:0 4px 0 #B87F10;}
+  .btn.cream:hover{box-shadow:0 2px 0 #B87F10;}
+  .nav-call{display:none;}
+  @media (max-width:860px){
+    nav{display:none;}
+    .nav-call{display:inline-block;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    background:
+      radial-gradient(1100px 520px at 78% -10%,#C93A32 0%,transparent 60%),
+      linear-gradient(180deg,#B3232B 0%,#8C171E 100%);
+    color:#FFF7E8;
+    border-bottom:5px solid var(--deep);
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;opacity:.16;pointer-events:none;
+    background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.5) 0 2px,transparent 2px 16px);
+  }
+  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-top:74px;padding-bottom:74px;}
+  .hero .eyebrow{color:var(--mustard);}
+  .hero h1{font-size:clamp(38px,6vw,66px);margin:16px 0 18px;text-shadow:0 4px 0 rgba(0,0,0,.18);}
+  .hero p.lede{font-size:clamp(17px,2vw,19.5px);max-width:44ch;color:#FBE9CD;}
+  .hero .actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
+  .est{
+    display:inline-flex;align-items:center;gap:10px;margin-top:34px;
+    font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#F3D9A6;
+  }
+  .est span.rule{display:block;width:44px;height:2px;background:var(--mustard);}
+  .sign{
+    background:var(--cream);border:5px solid var(--deep);border-radius:14px;
+    padding:26px 24px;box-shadow:0 22px 0 -6px rgba(0,0,0,.25);
+    transform:rotate(-1.4deg);color:var(--ink);text-align:center;
+  }
+  .sign .top{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);}
+  .sign .big{font-family:'Alfa Slab One',serif;font-size:clamp(28px,4vw,38px);line-height:1;margin:10px 0 6px;color:var(--red);}
+  .sign .small{font-size:14px;color:var(--soft);}
+  .sign hr{border:0;border-top:2px dashed var(--line);margin:16px 0;}
+  .sign .row{display:flex;justify-content:space-between;font-size:14.5px;padding:3px 0;}
+  .sign .row b{font-weight:700;}
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;gap:36px;padding-top:54px;padding-bottom:54px;}
+    .sign{transform:none;}
+  }
+
+  /* ---------- strip ---------- */
+  .strip{
+    background:var(--mustard);color:var(--deep);border-bottom:4px solid var(--deep);
+    font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px;
+  }
+  .strip .wrap{display:flex;flex-wrap:wrap;gap:14px 40px;justify-content:center;padding:14px 24px;text-align:center;}
+  .strip span::before{content:"★ ";color:var(--red);}
+
+  /* ---------- sections ---------- */
+  section{padding:80px 0;}
+  .section-head{max-width:640px;margin-bottom:44px;}
+  .section-head h2{font-size:clamp(28px,4.2vw,42px);margin:14px 0 14px;}
+  .section-head p{color:var(--soft);font-size:17px;}
+  .alt{background:var(--paper);border-top:3px solid var(--deep);border-bottom:3px solid var(--deep);}
+
+  /* story */
+  .story{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start;}
+  .story p{margin-bottom:18px;font-size:17px;color:#3B322B;}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .fact{
+    background:var(--cream);border:3px solid var(--deep);border-radius:12px;padding:20px;
+    box-shadow:6px 6px 0 rgba(44,31,26,.14);
+  }
+  .fact b{display:block;font-family:'Alfa Slab One',serif;font-size:30px;color:var(--red);line-height:1;}
+  .fact span{display:block;margin-top:8px;font-size:13.5px;color:var(--soft);letter-spacing:.02em;}
+  @media (max-width:900px){.story{grid-template-columns:1fr;gap:36px;}}
+
+  /* menu */
+  .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .card{
+    background:var(--cream);border:3px solid var(--deep);border-radius:16px;overflow:hidden;
+    box-shadow:8px 8px 0 rgba(44,31,26,.14);display:flex;flex-direction:column;
+  }
+  .card .cap{background:var(--deep);color:var(--mustard);padding:14px 20px;font-family:'Alfa Slab One',serif;font-size:19px;letter-spacing:.02em;}
+  .card ul{list-style:none;padding:20px;display:grid;gap:2px;}
+  .card li{padding:9px 0;border-bottom:1px dashed var(--line);font-size:15.5px;}
+  .card li:last-child{border-bottom:0;}
+  .card li i{display:block;font-style:normal;font-size:13px;color:var(--soft);margin-top:2px;}
+  .card .note{padding:0 20px 20px;font-size:13px;color:var(--soft);}
+  @media (max-width:900px){.menu-grid{grid-template-columns:1fr;}}
+
+  .toppings{
+    margin-top:32px;background:var(--deep);color:#F6E7C8;border-radius:16px;padding:28px 26px;
+  }
+  .toppings h3{font-size:19px;color:var(--mustard);margin-bottom:14px;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;}
+  .chips span{border:1.5px solid rgba(246,231,200,.4);border-radius:999px;padding:6px 14px;font-size:13.5px;}
+
+  /* visit */
+  .visit{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+  .hours{width:100%;border-collapse:collapse;background:var(--cream);border:3px solid var(--deep);border-radius:12px;overflow:hidden;}
+  .hours th{text-align:left;background:var(--deep);color:var(--mustard);padding:12px 18px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;}
+  .hours td{padding:12px 18px;border-bottom:1px dashed var(--line);font-size:15.5px;}
+  .hours tr:last-child td{border-bottom:0;}
+  .hours td:last-child{text-align:right;font-weight:600;}
+  .info-list{list-style:none;display:grid;gap:22px;margin-bottom:28px;}
+  .info-list li{display:flex;gap:14px;align-items:flex-start;}
+  .info-list .ico{
+    flex:none;width:38px;height:38px;border-radius:10px;background:var(--red);color:#fff;
+    display:grid;place-items:center;font-size:17px;box-shadow:0 3px 0 var(--red-dark);
+  }
+  .info-list b{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:3px;}
+  .info-list a{font-weight:600;text-decoration:none;border-bottom:2px solid var(--mustard);}
+  .callout{
+    background:var(--mustard);border:3px solid var(--deep);border-radius:12px;padding:18px 20px;
+    font-size:15px;color:var(--deep);margin-top:22px;
+  }
+  @media (max-width:900px){.visit{grid-template-columns:1fr;gap:36px;}}
+
+  /* quotes */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .quote{background:var(--paper);border-left:6px solid var(--red);border-radius:0 12px 12px 0;padding:24px;box-shadow:var(--shadow);}
+  .quote p{font-size:16px;margin-bottom:14px;}
+  .quote .who{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);}
+  .stars{color:var(--mustard);letter-spacing:2px;margin-bottom:10px;}
+  @media (max-width:900px){.quotes{grid-template-columns:1fr;}}
+
+  /* cta */
+  .cta{background:var(--deep);color:#FFF7E8;text-align:center;border-top:5px solid var(--red);}
+  .cta h2{font-size:clamp(28px,4.4vw,44px);margin-bottom:16px;}
+  .cta p{color:#E7D3AE;max-width:52ch;margin:0 auto 30px;font-size:17px;}
+  .cta .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  /* footer */
+  footer{background:#17110E;color:#C8B79C;padding:44px 0 34px;font-size:14.5px;}
+  footer .cols{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-start;}
+  footer a{color:#F0DDB8;}
+  footer .fine{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:#8E8071;}
+</style>
+</head>
+<body>
+
+<div class="banner">Seasonal hours &mdash; <strong>call ahead at (920) 674-3637</strong> before you make the drive.</div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top" style="text-decoration:none">
+      <span class="mark" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+          <path d="M5 13c0-4.4 4.9-8 11-8s11 3.6 11 8z" fill="#E8A31D"/>
+          <rect x="4" y="14.5" width="24" height="3.4" rx="1.7" fill="#4A3226"/>
+          <path d="M5 20.5h22c0 3.6-2.3 5.5-5 5.5H10c-2.7 0-5-1.9-5-5.5z" fill="#E8A31D"/>
+        </svg>
+      </span>
+      <span>
+        <span class="name">Wedl's</span>
+        <span class="sub">Hamburger Stand</span>
+      </span>
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#stand">The Stand</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li><a class="btn" href="tel:+19206743637">Call (920) 674-3637</a></li>
+      </ul>
+    </nav>
+    <a class="btn nav-call" href="tel:+19206743637">Call</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" style="padding:0">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Jefferson, Wisconsin &middot; Since 1916</p>
+        <h1>The same burger,<br>the same skillet,<br>for over a century.</h1>
+        <p class="lede">Fresh patties and sweet grilled onions, pressed into a century-old cast iron griddle in a stand the size of a garden shed. Then walk across the sidewalk for a malt.</p>
+        <div class="actions">
+          <a class="btn cream" href="#menu">See the Menu</a>
+          <a class="btn" href="https://maps.google.com/?q=200+E+Racine+St+Jefferson+WI+53549" target="_blank" rel="noopener">Get Directions</a>
+        </div>
+        <p class="est"><span class="rule"></span> 200 E. Racine St &middot; On U.S. 18</p>
+      </div>
+      <div class="sign">
+        <p class="top">Downtown Jefferson</p>
+        <p class="big">Hamburger<br>Stand</p>
+        <p class="small">&amp; Ice Cream Parlor</p>
+        <hr>
+        <div class="row"><span>Established</span><b>1916</b></div>
+        <div class="row"><span>Stand size</span><b>64 sq. ft.</b></div>
+        <div class="row"><span>Patty</span><b>1/8 lb.</b></div>
+        <div class="row"><span>Griddle</span><b>Cast iron</b></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <span>Griddled with onions</span>
+      <span>Cooked to order</span>
+      <span>Shakes, malts &amp; sundaes</span>
+      <span>Cash-friendly, small-town prices</span>
+    </div>
+  </div>
+
+  <section id="story">
+    <div class="wrap">
+      <div class="story">
+        <div>
+          <p class="eyebrow">Our Story</p>
+          <h2 style="font-size:clamp(28px,4.2vw,42px);margin:14px 0 22px;">It started with a cart on the sidewalk.</h2>
+          <p>Back in 1916 this corner was a grocery store. Somewhere along the way the owners rolled a cart onto the sidewalk and started selling hamburgers to people walking by on Racine Street. The burgers outlasted the groceries, and the cart became a permanent little stand.</p>
+          <p>The name over the window has changed a few times &mdash; Becker's, then Armstrong's, then Peterson's &mdash; but each new owner bought the recipe along with the building and changed almost nothing. When longtime customers took it over and put the Wedl name up, they kept the same rule: same meat, same onions, same skillet, same spot.</p>
+          <p>When the stand was damaged in 1999, the original griddle turned up about half a block down the street. It was cleaned up, restored, and put right back to work. It's still the surface your burger is cooked on today.</p>
+          <a class="btn ghost" href="#menu">What's on the board</a>
+        </div>
+        <div class="facts">
+          <div class="fact"><b>1916</b><span>The year it all started, right here on Racine Street.</span></div>
+          <div class="fact"><b>64<small style="font-size:15px"> sq ft</small></b><span>One of the smallest hamburger stands in the country.</span></div>
+          <div class="fact"><b>100+</b><span>Years the same burger recipe has been in use.</span></div>
+          <div class="fact"><b>1/8 lb</b><span>Each patty &mdash; so a double is a quarter pound.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The Menu</p>
+        <h2>Burgers off the skillet, ice cream across the sidewalk.</h2>
+        <p>Everything is cooked to order, so give it a minute. Ask for onions &mdash; they're grilled right alongside the meat, the way they've always been done here.</p>
+      </div>
+
+      <div class="menu-grid">
+        <div class="card">
+          <div class="cap">From the Griddle</div>
+          <ul>
+            <li>Hamburger <i>Single, double or triple</i></li>
+            <li>Cheeseburger</li>
+            <li>Bacon Hamburger</li>
+            <li>Bacon Cheeseburger</li>
+            <li>Pizzaburger</li>
+            <li>Grilled Onions <i>Added on request &mdash; the house classic</i></li>
+          </ul>
+          <p class="note">Patties are 1/8 lb. Most folks order a double.</p>
+        </div>
+
+        <div class="card">
+          <div class="cap">On the Side</div>
+          <ul>
+            <li>French Fries</li>
+            <li>Hot Dogs</li>
+            <li>Chips</li>
+            <li>Fountain Soda</li>
+            <li>Coffee &amp; Bottled Water</li>
+          </ul>
+          <p class="note">Sides and specials change with the season &mdash; call to check what's on today.</p>
+        </div>
+
+        <div class="card">
+          <div class="cap">Ice Cream Parlor</div>
+          <ul>
+            <li>Old Fashioned Shakes</li>
+            <li>Malts</li>
+            <li>Sundaes</li>
+            <li>Cones &amp; Dishes</li>
+            <li>Specialty Flavors <i>Chocolate Fruit Bomb, Peanut Butter Passion and more</i></li>
+          </ul>
+          <p class="note">The parlor sits just across the sidewalk from the stand.</p>
+        </div>
+      </div>
+
+      <div class="toppings">
+        <h3>Shake, malt &amp; sundae toppings</h3>
+        <div class="chips">
+          <span>Chocolate</span><span>Strawberry</span><span>Caramel</span><span>Hot Fudge</span>
+          <span>Butterscotch</span><span>Pineapple</span><span>Cherry</span><span>Creme de Menthe</span>
+          <span>Reese's Peanut Butter Cup</span><span>Snickers</span><span>Butterfinger</span><span>Oreo Cookie</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stand">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The Stand</p>
+        <h2>Sixty-four square feet, one cast iron skillet.</h2>
+        <p>There is no dining room. There are a few stools, a window, and a griddle that has been seasoned by a hundred years of burgers.</p>
+      </div>
+      <div class="menu-grid">
+        <div class="card"><div class="cap">The Griddle</div><ul>
+          <li>A century-old cast iron surface that has never really been replaced.</li>
+          <li>The day starts with lard on the griddle, then burgers and onions go down.</li>
+          <li>Grease from the griddle is spooned over the onions as they cook.</li>
+        </ul></div>
+        <div class="card"><div class="cap">The Building</div><ul>
+          <li>About 64 square feet &mdash; smaller than most walk-in coolers.</li>
+          <li>Right on U.S. 18 / Racine Street, a block east of Business 26.</li>
+          <li>Order at the window; grab a stool if one is open.</li>
+        </ul></div>
+        <div class="card"><div class="cap">Good to Know</div><ul>
+          <li>Cooked to order &mdash; weekends can mean a line down the sidewalk.</li>
+          <li>Hours are seasonal. A quick phone call saves a wasted trip.</li>
+          <li>Parking is on the street, right out front.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What People Say</p>
+        <h2>Folks drive across the state for these.</h2>
+      </div>
+      <div class="quotes">
+        <div class="quote">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p>"Best burgers I have ever had &mdash; and it comes out of a shack the size of a closet."</p>
+          <p class="who">A regular from Madison</p>
+        </div>
+        <div class="quote">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p>"Order the double with onions. That's the whole review."</p>
+          <p class="who">Jefferson County local</p>
+        </div>
+        <div class="quote">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p>"Burger at the window, malt across the sidewalk. Perfect summer night."</p>
+          <p class="who">Visitor on U.S. 18</p>
+        </div>
+      </div>
+      <p style="margin-top:20px;font-size:13px;color:var(--soft)">Sentiments drawn from public reviews of the stand.</p>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Visit</p>
+        <h2>Find us on Racine Street.</h2>
+      </div>
+      <div class="visit">
+        <div>
+          <ul class="info-list">
+            <li>
+              <span class="ico" aria-hidden="true">◎</span>
+              <span><b>Address</b>
+                <a href="https://maps.google.com/?q=200+E+Racine+St+Jefferson+WI+53549" target="_blank" rel="noopener">200 E. Racine St, Jefferson, WI 53549</a>
+              </span>
+            </li>
+            <li>
+              <span class="ico" aria-hidden="true">✆</span>
+              <span><b>Phone</b><a href="tel:+19206743637">(920) 674-3637</a></span>
+            </li>
+            <li>
+              <span class="ico" aria-hidden="true">✦</span>
+              <span><b>Where exactly</b>On U.S. 18 / Racine Street, one block east of Business Highway 26 in downtown Jefferson.</span>
+            </li>
+          </ul>
+          <div class="callout">
+            <strong>Hours are seasonal.</strong> The stand keeps different hours through the year and can close early on slow or bad-weather days. Please call before driving in.
+          </div>
+        </div>
+        <div>
+          <table class="hours">
+            <caption class="visually-hidden" style="position:absolute;left:-9999px">Regular hours</caption>
+            <tr><th scope="col">Day</th><th scope="col" style="text-align:right">Hours</th></tr>
+            <tr><td>Monday</td><td>10:30 am &ndash; 8:30 pm</td></tr>
+            <tr><td>Tuesday</td><td>10:30 am &ndash; 8:30 pm</td></tr>
+            <tr><td>Wednesday</td><td>10:30 am &ndash; 8:30 pm</td></tr>
+            <tr><td>Thursday</td><td>10:30 am &ndash; 8:30 pm</td></tr>
+            <tr><td>Friday</td><td>10:30 am &ndash; 9:00 pm</td></tr>
+            <tr><td>Saturday</td><td>10:30 am &ndash; 9:00 pm</td></tr>
+            <tr><td>Sunday</td><td>10:30 am &ndash; 8:30 pm</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>Come get a double with onions.</h2>
+      <p>Cooked to order on the same skillet since your great-grandparents were kids. Call ahead if you're driving in from out of town.</p>
+      <div class="actions">
+        <a class="btn cream" href="tel:+19206743637">Call (920) 674-3637</a>
+        <a class="btn" href="https://maps.google.com/?q=200+E+Racine+St+Jefferson+WI+53549" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div style="max-width:320px">
+        <p style="font-family:'Alfa Slab One',serif;font-size:20px;color:#FFF7E8">Wedl's Hamburger Stand</p>
+        <p style="margin-top:10px">&amp; Ice Cream Parlor &mdash; serving Jefferson, Wisconsin since 1916.</p>
+      </div>
+      <div>
+        <p style="color:#FFF7E8;font-weight:700;margin-bottom:8px">Visit</p>
+        <p><a href="https://maps.google.com/?q=200+E+Racine+St+Jefferson+WI+53549" target="_blank" rel="noopener">200 E. Racine St<br>Jefferson, WI 53549</a></p>
+      </div>
+      <div>
+        <p style="color:#FFF7E8;font-weight:700;margin-bottom:8px">Contact</p>
+        <p><a href="tel:+19206743637">(920) 674-3637</a></p>
+        <p style="margin-top:6px">Seasonal hours &mdash; call ahead</p>
+      </div>
+      <div>
+        <p style="color:#FFF7E8;font-weight:700;margin-bottom:8px">Menu</p>
+        <p><a href="#menu">Burgers</a><br><a href="#menu">Ice cream &amp; malts</a><br><a href="#story">Our story</a></p>
+      </div>
+    </div>
+    <p class="fine">&copy; <span id="yr">2026</span> Wedl's Hamburger Stand &amp; Ice Cream Parlor. Menu items and hours subject to change &mdash; please call to confirm.</p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"Wedl's Hamburger Stand & Ice Cream Parlor",
+  "servesCuisine":["Hamburgers","Ice Cream"],
+  "priceRange":"$",
+  "telephone":"+1-920-674-3637",
+  "foundingDate":"1916",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"200 E. Racine St",
+    "addressLocality":"Jefferson",
+    "addressRegion":"WI",
+    "postalCode":"53549",
+    "addressCountry":"US"
+  },
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Sunday"],"opens":"10:30","closes":"20:30"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Friday","Saturday"],"opens":"10:30","closes":"21:00"}
+  ]
+}
+</script>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>
