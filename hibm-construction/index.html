@@ -1,0 +1,1321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HIBM Construction | Licensed General Contractor in San Jose</title>
+<meta name="description" content="HIBM Construction is a licensed California general contractor in San Jose. Carpentry, plumbing, electrical, painting, roofing and building maintenance. No job too small. We fix it all. Call (408) 315-4663.">
+<meta name="theme-color" content="#151A22">
+<meta name="robots" content="index,follow">
+<!-- DEPLOY STEP: replace both absolute URLs below with the live site address before zipping -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="HIBM Construction | Licensed General Contractor in San Jose">
+<meta property="og:description" content="One number for the roof, the wiring, the paint and the remodel. Licensed California general contractor, San Jose.">
+<meta property="og:image" content="https://REPLACE-AT-DEPLOY/assets/hero-poster.jpg">
+<meta property="og:url" content="https://REPLACE-AT-DEPLOY/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23151A22'/%3E%3Cpath d='M5.5 6.6 L26.4 5.6 L27.4 26.5 L6.6 27.5 Z' fill='none' stroke='%23EFEBE3' stroke-width='2.1'/%3E%3Cpath d='M9.6 16.5 L14.2 21.4 L23 9.8' fill='none' stroke='%23D2492A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=JetBrains+Mono:wght@400;500&family=Public+Sans:wght@400;600&display=swap">
+<style>
+/* ---------------------------------------------------------------- tokens */
+:root{
+  --canvas:#EFEBE3;
+  --slate:#151A22;
+  --slate-soft:#1E2530;
+  --panel:#F7F5F0;
+  --accent:#D2492A;
+  --accent-text:#B93A1E;
+  --accent-btn:#C03D20;
+  --accent-btn-hover:#A93217;
+  --accent-on-slate:#E85F3D;
+  --text-primary:#151A22;
+  --text-secondary:#55606C;
+  --on-slate:#F2EEE6;
+  --on-slate-dim:#98A3B2;
+  --line:rgba(21,26,34,.13);
+  --line-strong:rgba(21,26,34,.32);
+  --line-slate:rgba(242,238,230,.15);
+  --line-slate-strong:rgba(242,238,230,.34);
+  --e1:cubic-bezier(.22,.61,.36,1);
+  --e2:cubic-bezier(.65,0,.35,1);
+  --tshadow:0 1px 2px rgba(5,5,10,.95),0 3px 12px rgba(5,5,10,.78),0 10px 44px rgba(5,5,10,.8);
+  --pad:clamp(20px,5vw,72px);
+  --maxw:1240px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{overflow-x:hidden;overflow-x:clip}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--canvas);color:var(--text-primary);
+  font-family:"Public Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:17px;line-height:1.62;font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  opacity:0;transition:opacity .6s var(--e1);
+}
+body.ready{opacity:1}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:Archivo,ui-sans-serif,system-ui,sans-serif;font-weight:800;line-height:1.03;letter-spacing:-.022em;margin:0}
+p{margin:0}
+a{color:inherit}
+.mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:500;letter-spacing:.09em;text-transform:uppercase;font-size:12px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--slate);color:var(--on-slate);padding:14px 20px;border-radius:0 0 10px 0}
+.skip:focus{left:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:3px}
+::selection{background:rgba(210,73,42,.24)}
+
+/* ------------------------------------------------- environment (one place) */
+.env{position:fixed;inset:0;z-index:0;pointer-events:none}
+.env .grid{position:absolute;inset:-8%;opacity:.5;
+  background-image:linear-gradient(rgba(21,26,34,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(21,26,34,.055) 1px,transparent 1px);
+  background-size:112px 112px;animation:drift 96s linear infinite}
+.env .grain{position:absolute;inset:0;opacity:.32;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E")}
+@keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(112px,112px,0)}}
+body>*:not(.env){position:relative;z-index:1}
+
+/* -------------------------------------------------------------------- nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .45s var(--e1),box-shadow .45s var(--e1),color .45s var(--e1)}
+nav::before{content:"";position:absolute;inset:-1px 0 -28px;z-index:-1;pointer-events:none;opacity:1;transition:opacity .45s var(--e1);
+  background:linear-gradient(180deg,rgba(10,12,17,.62) 0%,rgba(10,12,17,.3) 56%,rgba(10,12,17,0) 100%)}
+nav.solid{background:rgba(239,235,227,.93);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+nav.solid::before{opacity:0}
+.navin{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);height:76px;display:flex;align-items:center;gap:22px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--on-slate);text-shadow:var(--tshadow);transition:color .45s var(--e1),text-shadow .45s var(--e1)}
+nav.solid .brand{color:var(--text-primary);text-shadow:none}
+.brand svg{width:26px;height:26px;flex:none}
+.brand b{font-family:Archivo;font-weight:800;font-size:19px;letter-spacing:-.01em}
+.brand span{font-family:"JetBrains Mono";font-weight:400;font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.72;display:block;margin-top:-2px}
+.navlinks{display:none}
+.navcta{margin-left:auto;display:flex;align-items:center;gap:18px}
+.navtel{text-decoration:none;font-family:"JetBrains Mono";font-weight:500;font-size:14px;letter-spacing:.04em;color:var(--on-slate);text-shadow:var(--tshadow);white-space:nowrap;transition:color .45s var(--e1),text-shadow .45s var(--e1)}
+nav.solid .navtel{color:var(--text-primary);text-shadow:none}
+.navtel:hover{color:var(--accent-on-slate)}
+nav.solid .navtel:hover{color:var(--accent-text)}
+@media (min-width:1000px){
+  .navlinks{display:flex;gap:28px;align-items:center;margin-left:auto}
+  .navlinks a{text-decoration:none;font-size:14px;font-weight:600;letter-spacing:.01em;color:var(--on-slate);text-shadow:var(--tshadow);opacity:.9;transition:opacity .3s var(--e1),color .45s var(--e1),text-shadow .45s var(--e1)}
+  nav.solid .navlinks a{color:var(--text-primary);text-shadow:none}
+  .navlinks a:hover{opacity:1;color:var(--accent-on-slate)}
+  nav.solid .navlinks a:hover{color:var(--accent-text)}
+  .navcta{margin-left:34px}
+}
+@media (max-width:719px){ .navtel{font-size:0} .navtel::after{content:"Call";font-size:14px} }
+
+/* ----------------------------------------------------------------- buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:Archivo;font-weight:700;font-size:15px;letter-spacing:.005em;
+  padding:15px 26px;border-radius:2px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;
+  transition:background .34s var(--e1),color .34s var(--e1),border-color .34s var(--e1),transform .34s var(--e1);text-shadow:none}
+.btn-p{background:var(--accent-btn);color:#fff;border-color:var(--accent-btn)}
+.btn-p:hover{background:var(--accent-btn-hover);border-color:var(--accent-btn-hover);transform:translateY(-2px)}
+.btn-g{background:transparent;color:var(--text-primary);border-color:var(--line-strong)}
+.btn-g:hover{border-color:var(--text-primary);transform:translateY(-2px)}
+.btn-l{background:transparent;color:var(--on-slate);border-color:var(--line-slate-strong)}
+.btn-l:hover{border-color:var(--on-slate);background:rgba(242,238,230,.08);transform:translateY(-2px)}
+.btn svg{width:15px;height:15px;flex:none;transition:transform .34s var(--e1)}
+.btn:hover svg{transform:translateX(3px)}
+@media (pointer:coarse){.btn{min-height:48px}}
+
+/* ------------------------------------------------------- signature: ticks */
+.tick{display:inline-block;width:1.05em;height:1.05em;flex:none;vertical-align:-.18em}
+.tick svg{width:100%;height:100%;display:block;overflow:visible}
+.tick .bx{fill:none;stroke:var(--line-strong);stroke-width:1.5}
+.tick .ck{fill:none;stroke:var(--accent);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:19;stroke-dashoffset:19;transition:stroke-dashoffset .72s var(--e1)}
+.on-slate .tick .bx{stroke:var(--line-slate-strong)}
+.on-slate .tick .ck{stroke:var(--accent-on-slate)}
+[data-rv].in .tick .ck{stroke-dashoffset:0}
+.rule{height:1px;background:var(--line);transform-origin:left;transform:scaleX(0);transition:transform 1.1s var(--e1)}
+[data-rv].in .rule{transform:scaleX(1)}
+.on-slate .rule{background:var(--line-slate)}
+
+/* --------------------------------------------------------- reveal system */
+[data-rv] .part{opacity:0;transform:translateY(20px);transition:opacity .78s var(--e1),transform .78s var(--e1)}
+[data-rv].in .part{opacity:1;transform:none}
+[data-rv].in .part:nth-child(1){transition-delay:0ms}
+[data-rv].in .part:nth-child(2){transition-delay:80ms}
+[data-rv].in .part:nth-child(3){transition-delay:160ms}
+[data-rv].in .part:nth-child(4){transition-delay:240ms}
+[data-rv].in .part:nth-child(5){transition-delay:320ms}
+[data-rv].in .part:nth-child(6){transition-delay:400ms}
+[data-rv].in .part:nth-child(7){transition-delay:480ms}
+[data-rv].in .part:nth-child(8){transition-delay:560ms}
+[data-rv].in.rvdone .part{transition-delay:0s!important}
+
+/* ------------------------------------------------------------------ hero */
+.hero{position:relative;height:620vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--slate)}
+.stage .poster{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity .8s var(--e1)}
+.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;
+  transition:opacity .9s var(--e1);will-change:transform;transform:translateZ(0)}
+.stage.video-ready video{opacity:1}
+.stage.video-ready .poster{opacity:0}
+.stage.video-failed video{display:none}
+.scrim{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 120% 92% at 62% 44%,rgba(10,12,18,0) 30%,rgba(10,12,18,.6) 100%)}
+.vig{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(9,11,16,.5) 0%,rgba(9,11,16,.22) 34%,rgba(9,11,16,0) 58%)}
+
+.band{position:absolute;left:0;top:0;width:min(52%,660px);height:100%;
+  padding:0 0 0 var(--pad);display:flex;flex-direction:column;justify-content:center;
+  color:var(--on-slate);text-shadow:var(--tshadow);opacity:0;pointer-events:none}
+.band::before{content:"";position:absolute;inset:-30% -60% -30% -40%;pointer-events:none;z-index:-1;
+  opacity:calc(.25 + .75*var(--k,1));
+  background:radial-gradient(ellipse 66% 56% at 34% 50%,rgba(5,6,11,var(--sa,.66)) 0%,rgba(5,6,11,calc(var(--sa,.66)*.66)) 46%,rgba(5,6,11,0) 76%)}
+.band.act{pointer-events:auto}
+.band h1,.band h2{font-size:clamp(38px,6.1vw,80px);line-height:1.0;letter-spacing:-.032em}
+.band .sub{margin-top:22px;font-size:clamp(16px,1.35vw,20px);line-height:1.55;max-width:44ch;color:#E4DFD5}
+.band .kick{margin-bottom:20px;color:#E9C9B8;opacity:.92}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.w{display:inline-block;white-space:pre}
+.c{display:inline-block;white-space:pre}
+
+/* entrance (a) drift-down, band 1 */
+.b1 .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);opacity:var(--kc);
+  transform:translateY(calc((1 - var(--kc))*-26px))}
+/* entrance (b) grid snap-align, band 2 */
+.b2 .c{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.6,1);opacity:var(--kc);
+  transform:translateX(calc((1 - var(--kc))*var(--jx,0px)))}
+/* entrance (c) blur-to-sharp, band 3 */
+.b3 .stack{position:relative}
+.b3 .soft{position:absolute;inset:0;filter:blur(11px);opacity:calc(1 - var(--k,0));pointer-events:none}
+.b3 .sharp{opacity:var(--k,0)}
+/* entrance (e) word rise into staged settle, band 4 */
+.b4 .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.9,1);opacity:var(--kc);
+  transform:translateY(calc((1 - var(--kc))*30px))}
+.b4 .sub{--ks:clamp(0,(var(--k,0) - .58)*3.4,1);opacity:var(--ks);transform:translateY(calc((1 - var(--ks))*18px))}
+.b4 .cta{--kb:clamp(0,(var(--k,0) - .74)*4.2,1);opacity:var(--kb);transform:translateY(calc((1 - var(--kb))*18px));
+  margin-top:34px;display:flex;flex-wrap:wrap;gap:13px}
+.b4 .lic{--kb:clamp(0,(var(--k,0) - .84)*5,1);opacity:var(--kb);margin-top:26px;display:flex;align-items:center;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:9px;background:rgba(9,11,18,.55);border:1px solid rgba(150,150,180,.3);
+  border-radius:999px;padding:7px 15px;backdrop-filter:blur(10px);text-shadow:0 1px 3px rgba(5,5,10,.85);
+  font-family:"JetBrains Mono";font-weight:400;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#DED8CE}
+
+.ringwrap{position:absolute;right:var(--pad);bottom:38px;display:flex;align-items:center;gap:12px;color:#DED8CE;
+  transition:opacity .6s var(--e1)}
+.stage.video-ready .ringwrap{opacity:0;pointer-events:none}
+.ringwrap .lbl{font-family:"JetBrains Mono";font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.8;text-shadow:var(--tshadow)}
+.ring{width:34px;height:34px;transform:rotate(-90deg);filter:drop-shadow(0 2px 8px rgba(5,5,10,.7))}
+.ring circle{transition:stroke-dashoffset .2s linear}
+.chev{width:22px;height:34px;border:1.5px solid rgba(222,216,206,.55);border-radius:11px;position:relative}
+.chev::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;border-radius:2px;background:#DED8CE;
+  transform:translateX(-50%);animation:chev 1.9s var(--e1) infinite}
+@keyframes chev{0%{opacity:0;transform:translate(-50%,-4px)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,11px)}}
+
+.scut{position:absolute;left:var(--pad);bottom:34px;display:flex;align-items:center;gap:11px;color:#DED8CE;opacity:.85;
+  font-family:"JetBrains Mono";font-size:10px;letter-spacing:.2em;text-transform:uppercase;text-shadow:var(--tshadow);
+  transition:opacity .5s var(--e1)}
+.scut.gone{opacity:0}
+.scut i{display:block;width:44px;height:1px;background:currentColor;transform-origin:left;animation:scut 2.6s var(--e1) infinite}
+@keyframes scut{0%{transform:scaleX(.2)}50%{transform:scaleX(1)}100%{transform:scaleX(.2)}}
+@media (max-height:560px){.scut,.ringwrap .lbl{display:none}}
+
+/* --------------------------------------------------------- static hero */
+.shero{display:none;position:relative;min-height:100svh;background:var(--slate);overflow:hidden}
+.shero .pic{position:absolute;inset:0;background-size:cover;background-position:58% 50%}
+.shero .sc{position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,11,16,.72) 0%,rgba(9,11,16,.44) 42%,rgba(9,11,16,.86) 100%)}
+.shero .in{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:112px var(--pad) 52px;max-width:var(--maxw);margin:0 auto;color:var(--on-slate);text-shadow:var(--tshadow)}
+.shero h1{font-size:clamp(38px,10.6vw,62px);line-height:1.02;letter-spacing:-.03em}
+.shero .sub{margin-top:20px;font-size:17px;line-height:1.56;max-width:34ch;color:#E4DFD5}
+.shero .cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+.shero .lic{margin-top:26px}
+
+/* ------------------------------------------------------------- sections */
+section{position:relative}
+.sec{padding-block:clamp(76px,10.5vw,144px)}
+.on-slate{background:var(--slate);color:var(--on-slate)}
+.on-slate h2,.on-slate h3{color:var(--on-slate)}
+.kick{font-family:"JetBrains Mono";font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-text);display:flex;align-items:center;gap:11px}
+.kick::before{content:"";width:26px;height:1px;background:var(--accent);flex:none}
+.on-slate .kick{color:var(--accent-on-slate)}
+.on-slate .kick::before{background:var(--accent-on-slate)}
+h2.big{font-size:clamp(31px,4.5vw,58px);line-height:1.04;letter-spacing:-.028em}
+.lede{font-size:clamp(17px,1.35vw,19px);line-height:1.66;color:var(--text-secondary)}
+.on-slate .lede{color:var(--on-slate-dim)}
+
+/* 1. intro */
+.intro .top{display:grid;grid-template-columns:1fr;gap:34px}
+@media (min-width:940px){.intro .top{grid-template-columns:1.05fr .95fr;gap:70px;align-items:start}}
+.intro h2{margin-top:22px}
+.intro .body p+p{margin-top:17px}
+.stats{margin-top:clamp(52px,7vw,84px);display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line)}
+@media (min-width:860px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--canvas);padding:30px 26px 30px 0;padding-left:clamp(0px,2vw,26px)}
+.stat b{display:block;font-family:Archivo;font-weight:800;font-size:clamp(28px,3.2vw,42px);line-height:1;letter-spacing:-.03em}
+.stat b .u{font-size:.52em;letter-spacing:0;margin-left:1px}
+.stat span{display:block;margin-top:11px;font-family:"JetBrains Mono";font-weight:400;font-size:11px;line-height:1.55;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary)}
+
+/* 2. services */
+.svc .head{display:grid;gap:20px;margin-bottom:clamp(40px,5vw,60px)}
+@media (min-width:940px){.svc .head{grid-template-columns:1fr 1fr;gap:64px;align-items:end}}
+.cards{display:grid;grid-template-columns:1fr;gap:clamp(20px,2.4vw,30px)}
+@media (min-width:680px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1040px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;
+  transition:border-color .45s var(--e1),transform .45s var(--e1),box-shadow .45s var(--e1)}
+.card:hover{border-color:var(--line-strong);transform:translateY(-4px);box-shadow:0 16px 44px -26px rgba(21,26,34,.5)}
+.card .ph{aspect-ratio:3/2;overflow:hidden;background:#DCD6CC}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--e1)}
+.card:hover .ph img{transform:scale(1.045)}
+.card .bd{padding:26px 26px 30px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:21px;letter-spacing:-.016em;display:flex;align-items:baseline;gap:11px}
+.card p{margin-top:12px;font-size:15.5px;line-height:1.6;color:var(--text-secondary)}
+.card ul{margin:20px 0 0;padding:0;list-style:none;border-top:1px solid var(--line);padding-top:16px}
+.card li{font-family:"JetBrains Mono";font-weight:400;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text-secondary);padding:5px 0 5px 17px;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:.95em;width:7px;height:1px;background:var(--accent)}
+
+/* 3. punch list */
+.punch{background:var(--panel);border-block:1px solid var(--line)}
+.punch .in{max-width:820px;margin:0 auto;text-align:center}
+.punch h2{margin-top:20px}
+.punch .kick{justify-content:center}
+.punch .lede{margin:20px auto 0;max-width:52ch}
+.plist{margin:clamp(38px,5vw,54px) 0 0;padding:0;list-style:none;text-align:left;max-width:560px;margin-inline:auto}
+.pli{display:flex;align-items:flex-start;gap:15px;padding:15px 0;border-bottom:1px solid var(--line)}
+.pli .tick{margin-top:.22em}
+.pli .tx{position:relative;font-family:Archivo;font-weight:700;font-size:clamp(17px,2vw,21px);letter-spacing:-.014em;line-height:1.35;
+  transition:color .5s var(--e1),opacity .5s var(--e1)}
+.pli .tx::after{content:"";position:absolute;left:-2px;right:-2px;top:.62em;height:1.5px;background:var(--accent);
+  transform:scaleX(var(--l,0));transform-origin:left}
+.pli.cl .tx{color:var(--text-secondary);opacity:.62}
+.holdrow{margin-top:clamp(34px,4.4vw,46px);display:flex;flex-direction:column;align-items:center;gap:16px}
+.hold{position:relative;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none;
+  background:transparent;color:var(--text-primary);border:1.5px solid var(--line-strong);border-radius:2px;
+  font-family:Archivo;font-weight:700;font-size:15px;padding:16px 34px;cursor:pointer;min-height:48px;
+  transition:border-color .34s var(--e1),color .34s var(--e1)}
+.hold:hover{border-color:var(--text-primary)}
+.hold .fill{position:absolute;left:0;top:0;bottom:0;width:100%;background:var(--accent-btn);transform:scaleX(var(--p,0));transform-origin:left;z-index:0}
+.hold .lb{position:relative;z-index:1;mix-blend-mode:difference;color:#fff}
+.punch .done-line{margin-top:26px;font-family:Archivo;font-weight:800;font-size:clamp(21px,2.7vw,30px);letter-spacing:-.02em;
+  color:var(--accent-text);opacity:0;transform:translateY(12px);transition:opacity .7s var(--e1),transform .7s var(--e1)}
+.punch.done .done-line{opacity:1;transform:none}
+.punch.done .hold{opacity:.42;pointer-events:none}
+.holdrow .hint{font-family:"JetBrains Mono";font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-secondary)}
+
+/* 4. why */
+.why .head{max-width:760px}
+.why .grid4{margin-top:clamp(46px,5.6vw,68px);display:grid;grid-template-columns:1fr;gap:1px;background:var(--line-slate)}
+@media (min-width:700px){.why .grid4{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.why .grid4{grid-template-columns:repeat(4,1fr)}}
+.why .it{background:var(--slate);padding:32px 26px 34px 0;padding-right:clamp(18px,2vw,30px);padding-left:clamp(0px,2vw,28px)}
+.why .it .n{font-family:"JetBrains Mono";font-weight:500;font-size:11px;letter-spacing:.2em;color:var(--accent-on-slate)}
+.why .it h3{margin-top:16px;font-size:20px;letter-spacing:-.016em;display:flex;align-items:baseline;gap:11px}
+.why .it p{margin-top:13px;font-size:15.5px;line-height:1.62;color:var(--on-slate-dim)}
+
+/* 5. work */
+.work .head{display:grid;gap:18px;margin-bottom:clamp(38px,4.6vw,54px)}
+@media (min-width:940px){.work .head{grid-template-columns:1.1fr .9fr;gap:60px;align-items:end}}
+.wgrid{display:grid;grid-template-columns:1fr;gap:clamp(14px,1.8vw,22px)}
+@media (min-width:760px){.wgrid{grid-template-columns:repeat(6,1fr)}
+  .w1{grid-column:span 4}.w2{grid-column:span 2}.w3{grid-column:span 2}.w4{grid-column:span 4}
+  .w5{grid-column:span 3}.w6{grid-column:span 3}}
+.wc{position:relative;overflow:hidden;background:#DCD6CC;border:1px solid var(--line);display:block}
+.wc img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--e1),filter 1.2s var(--e1)}
+.wc:hover img{transform:scale(1.05)}
+.w1 img,.w4 img{aspect-ratio:16/9}
+.w2 img,.w3 img,.w5 img,.w6 img{aspect-ratio:4/3}
+.wc .lab{position:absolute;left:0;right:0;bottom:0;padding:52px 22px 20px;color:#F4F0E8;
+  background:linear-gradient(180deg,rgba(9,11,16,0) 0%,rgba(9,11,16,.72) 68%,rgba(9,11,16,.88) 100%)}
+.wc .lab b{display:block;font-family:Archivo;font-weight:700;font-size:18px;letter-spacing:-.012em}
+.wc .lab span{display:block;margin-top:5px;font-family:"JetBrains Mono";font-weight:400;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;opacity:.82}
+.note{margin-top:26px;font-size:14px;line-height:1.6;color:var(--text-secondary);max-width:66ch;
+  padding-left:15px;border-left:2px solid var(--line-strong)}
+
+/* 6. reviews */
+.rev{background:var(--panel);border-block:1px solid var(--line)}
+.rev .head{display:grid;gap:18px;margin-bottom:clamp(38px,4.6vw,54px)}
+@media (min-width:940px){.rev .head{grid-template-columns:1fr auto;gap:50px;align-items:end}}
+.score{display:flex;align-items:baseline;gap:13px}
+.score b{font-family:Archivo;font-weight:800;font-size:46px;line-height:1;letter-spacing:-.03em}
+.score .st{display:flex;gap:3px;color:var(--accent)}
+.score .st svg{width:15px;height:15px}
+.score span{font-family:"JetBrains Mono";font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary)}
+.quotes{display:grid;grid-template-columns:1fr;gap:clamp(18px,2.2vw,26px)}
+@media (min-width:720px){.quotes{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.quotes{grid-template-columns:repeat(3,1fr)}}
+.q{background:var(--canvas);border:1px solid var(--line);padding:28px 26px 26px;display:flex;flex-direction:column;
+  transition:border-color .45s var(--e1),transform .45s var(--e1)}
+.q:hover{border-color:var(--line-strong);transform:translateY(-3px)}
+.q .mk{font-family:Archivo;font-weight:800;font-size:38px;line-height:.6;color:var(--accent);opacity:.4}
+.q blockquote{margin:16px 0 0;font-size:15.5px;line-height:1.66;color:var(--text-primary)}
+.q figcaption{margin-top:auto;padding-top:20px;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.q figcaption b{font-family:Archivo;font-weight:700;font-size:14.5px}
+.q figcaption span{font-family:"JetBrains Mono";font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--text-secondary)}
+.q.tall{grid-row:span 1}
+
+/* 7. areas */
+.areas .in{display:grid;grid-template-columns:1fr;gap:34px}
+@media (min-width:940px){.areas .in{grid-template-columns:.82fr 1.18fr;gap:70px;align-items:start}}
+.alist{display:grid;grid-template-columns:repeat(2,1fr);gap:0 26px;margin:0;padding:0;list-style:none}
+@media (min-width:620px){.alist{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:940px){.alist{grid-template-columns:repeat(4,1fr)}}
+.alist li{display:flex;align-items:baseline;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);
+  font-family:"JetBrains Mono";font-weight:400;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+.alist .tick{width:.92em;height:.92em}
+
+/* 8. faq */
+.faq .in{display:grid;grid-template-columns:1fr;gap:32px}
+@media (min-width:940px){.faq .in{grid-template-columns:.72fr 1.28fr;gap:70px;align-items:start}}
+.acc{border-top:1px solid var(--line)}
+.acc details{border-bottom:1px solid var(--line)}
+.acc summary{list-style:none;cursor:pointer;padding:22px 44px 22px 0;position:relative;
+  font-family:Archivo;font-weight:700;font-size:clamp(17px,1.7vw,20px);letter-spacing:-.014em;line-height:1.35;
+  transition:color .3s var(--e1)}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:hover{color:var(--accent-text)}
+.acc summary::after,.acc summary::before{content:"";position:absolute;right:6px;top:50%;background:var(--text-primary);
+  transition:transform .42s var(--e1),background .3s var(--e1)}
+.acc summary::after{width:15px;height:1.5px;margin-top:-.75px}
+.acc summary::before{width:1.5px;height:15px;margin-top:-7.5px;right:12.75px}
+.acc details[open] summary::before{transform:rotate(90deg);opacity:0}
+.acc details[open] summary{color:var(--accent-text)}
+.acc details[open] summary::after{background:var(--accent)}
+.acc .ans{padding:0 0 26px;font-size:16px;line-height:1.68;color:var(--text-secondary);max-width:62ch}
+.acc .ans a{color:var(--accent-text);text-underline-offset:3px}
+
+/* 9. contact */
+.cta-sec .in{display:grid;grid-template-columns:1fr;gap:44px}
+@media (min-width:980px){.cta-sec .in{grid-template-columns:1.15fr .85fr;gap:72px;align-items:start}}
+form{display:grid;gap:18px}
+.f2{display:grid;grid-template-columns:1fr;gap:18px}
+@media (min-width:560px){.f2{grid-template-columns:1fr 1fr}}
+label{display:block;font-family:"JetBrains Mono";font-weight:500;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--on-slate-dim);margin-bottom:9px}
+input,select,textarea{width:100%;background:rgba(242,238,230,.055);border:1px solid var(--line-slate-strong);border-radius:2px;
+  color:var(--on-slate);font-family:inherit;font-size:16px;padding:14px 15px;transition:border-color .3s var(--e1),background .3s var(--e1)}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%2398A3B2' stroke-width='1.6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 15px center;background-size:12px;padding-right:40px}
+textarea{min-height:132px;resize:vertical;line-height:1.6}
+input:focus,select:focus,textarea:focus{border-color:var(--accent-on-slate);background:rgba(242,238,230,.09);outline:none}
+input::placeholder,textarea::placeholder{color:rgba(152,163,178,.62)}
+.fnote{font-size:13px;line-height:1.6;color:var(--on-slate-dim)}
+.fstate{font-family:"JetBrains Mono";font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent-on-slate);
+  min-height:1.4em;opacity:0;transition:opacity .4s var(--e1)}
+.fstate.on{opacity:1}
+.direct{display:grid;gap:1px;background:var(--line-slate);border-block:1px solid var(--line-slate)}
+.direct a,.direct div{background:var(--slate);padding:22px 0;text-decoration:none;display:block}
+.direct .lb{font-family:"JetBrains Mono";font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-slate-dim)}
+.direct .vl{margin-top:8px;font-family:Archivo;font-weight:700;font-size:clamp(19px,2.3vw,25px);letter-spacing:-.018em;
+  transition:color .3s var(--e1);word-break:break-word}
+.direct a:hover .vl{color:var(--accent-on-slate)}
+.hours{margin-top:26px}
+.hours dl{margin:12px 0 0;display:grid;grid-template-columns:auto 1fr;gap:7px 20px;font-size:14px}
+.hours dt{font-family:"JetBrains Mono";font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-slate-dim)}
+.hours dd{margin:0;color:var(--on-slate);font-variant-numeric:tabular-nums}
+
+/* ---------------------------------------------------------------- footer */
+footer{background:var(--slate);color:var(--on-slate);border-top:1px solid var(--line-slate);padding-block:clamp(52px,6vw,78px) 34px}
+.fgrid{display:grid;grid-template-columns:1fr;gap:34px}
+@media (min-width:820px){.fgrid{grid-template-columns:1.4fr 1fr 1fr;gap:52px}}
+.fbrand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--on-slate)}
+.fbrand svg{width:30px;height:30px}
+.fbrand b{font-family:Archivo;font-weight:800;font-size:21px}
+.fbrand span{font-family:"JetBrains Mono";font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.7;display:block;margin-top:-2px}
+footer .fx{margin-top:18px;font-size:14.5px;line-height:1.62;color:var(--on-slate-dim);max-width:40ch}
+footer h4{font-family:"JetBrains Mono";font-weight:500;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-slate-dim)}
+footer ul{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:11px}
+footer ul a{text-decoration:none;font-size:15px;color:var(--on-slate);opacity:.86;transition:opacity .3s var(--e1),color .3s var(--e1)}
+footer ul a:hover{opacity:1;color:var(--accent-on-slate)}
+.fbot{margin-top:clamp(42px,5vw,62px);padding-top:24px;border-top:1px solid var(--line-slate);
+  display:flex;flex-wrap:wrap;gap:14px 26px;align-items:baseline;justify-content:space-between}
+.fbot p{font-family:"JetBrains Mono";font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-slate-dim)}
+.disc{margin-top:14px;font-size:12.5px;line-height:1.62;color:var(--on-slate-dim);opacity:.8;max-width:78ch}
+
+/* ------------------------------------------------- static-hero gate (CSS) */
+@media (max-width:720px),
+       (orientation:portrait) and (max-width:1024px),
+       (orientation:portrait) and (pointer:coarse),
+       (orientation:landscape) and (pointer:coarse) and (max-height:560px),
+       (prefers-reduced-motion:reduce){
+  .hero{display:none}
+  .shero{display:block}
+}
+@media (max-width:720px){
+  .band{width:100%;padding-right:var(--pad)}
+  .stat{padding-left:0;padding-right:18px}
+  .why .it{padding-left:0}
+}
+
+/* ------------------------------------------------------- reduced motion */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important;animation-delay:0s!important}
+  [data-rv] .part{opacity:1!important;transform:none!important}
+  .tick .ck{stroke-dashoffset:0!important}
+  .rule{transform:scaleX(1)!important}
+  .punch .done-line{opacity:1!important;transform:none!important}
+  .pli .tx::after{transform:scaleX(1)!important}
+  .pli .tx{color:var(--text-secondary);opacity:.62}
+  .env .grid{opacity:.34}
+}
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="env" aria-hidden="true"><div class="grid"></div><div class="grain"></div></div>
+
+<nav id="nav">
+  <div class="navin">
+    <a class="brand" href="#top" aria-label="HIBM Construction, home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4.6 5.8 L27.3 4.7 L28.4 27.4 L5.7 28.5 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.6 16.5 L14.2 21.4 L23 9.8" fill="none" stroke="#D2492A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span style="display:block"><b>HIBM</b><span>Construction</span></span>
+    </a>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#why">Why HIBM</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="navcta">
+      <a class="navtel" href="tel:+14083154663">(408) 315-4663</a>
+      <a class="btn btn-p" href="#quote" style="padding:12px 20px;font-size:14px">Request a quote</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main" tabindex="-1">
+<span id="top"></span>
+
+<!-- ============================================================ HERO -->
+<div class="hero" id="hero">
+  <div class="stage" id="stage">
+    <div class="poster" aria-hidden="true"></div>
+    <video id="hv" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+    <div class="scrim" aria-hidden="true"></div>
+    <div class="vig" aria-hidden="true"></div>
+
+    <div class="band b1" data-a="0" data-b="0.19" style="--sa:.64">
+      <h1><span class="sr">No job too small. We fix it all.</span><span class="vis" aria-hidden="true" data-split="word">No job too small.
+We fix it all.</span></h1>
+    </div>
+
+    <div class="band b2" data-a="0.24" data-b="0.46" data-spread="0.5" style="--sa:.66">
+      <h2><span class="sr">The roof leak. The gutter. The light that keeps going out.</span><span class="vis" aria-hidden="true" data-split="char">The roof leak. The gutter.
+The light that keeps going out.</span></h2>
+    </div>
+
+    <div class="band b3" data-a="0.51" data-b="0.73" style="--sa:.66">
+      <h2 class="stack">
+        <span class="sr">That is not four contractors. That is one phone call.</span>
+        <span class="soft" aria-hidden="true">That is not four contractors.<br>That is one phone call.</span>
+        <span class="sharp" aria-hidden="true">That is not four contractors.<br>That is one phone call.</span>
+      </h2>
+    </div>
+
+    <div class="band b4 act" data-a="0.78" data-b="1" data-ramp="0.034" style="--sa:.7">
+      <h2><span class="sr">HIBM Construction</span><span class="vis" aria-hidden="true" data-split="word">HIBM Construction</span></h2>
+      <p class="sub">Licensed California general contractor, San Jose. Small repairs and full remodels, handled by one crew.</p>
+      <div class="cta">
+        <a class="btn btn-p" href="#quote">Request a quote <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn btn-l" href="#services">See what we do</a>
+      </div>
+      <div class="lic"><span class="chip">CA licence 642852</span><span class="chip">5.0 from 17 Google reviews</span></div>
+    </div>
+
+    <div class="scut" id="scut" aria-hidden="true"><i></i> Scroll</div>
+    <div class="ringwrap" id="ringwrap" aria-hidden="true">
+      <span class="lbl">Loading film</span>
+      <svg class="ring" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(222,216,206,.22)" stroke-width="3"/>
+        <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ==================================================== STATIC HERO -->
+<header class="shero" id="shero">
+  <div class="pic" aria-hidden="true"></div>
+  <div class="sc" aria-hidden="true"></div>
+  <div class="in">
+    <h1>No job too small.<br>We fix it all.</h1>
+    <p class="sub">Licensed California general contractor in San Jose. One number for the roof, the wiring, the paint and the remodel.</p>
+    <div class="cta">
+      <a class="btn btn-p" href="#quote">Request a quote <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn btn-l" href="#services">See what we do</a>
+    </div>
+    <div class="lic"><span class="chip">CA licence 642852</span></div>
+  </div>
+</header>
+
+<!-- ========================================================== 1. INTRO -->
+<section class="sec intro" id="about">
+  <div class="wrap" data-rv>
+    <div class="top">
+      <div>
+        <p class="kick part">Who we are</p>
+        <h2 class="big part">One contractor.<br>The whole punch list.</h2>
+      </div>
+      <div class="body part">
+        <p class="lede">HIBM Construction is a full service general contractor in San Jose. We take on turnkey tenant improvements, remodels and home improvements, and we keep buildings running the rest of the year: the repairs, the maintenance, the small things that never seem to get their own visit.</p>
+        <p class="lede">Most property owners keep a running list. A roof leak. A gutter coming away. A light in the lot that keeps going out. A bathroom that has needed doing for two years. Calling four different trades to clear that list is the reason it never gets cleared. We take the list.</p>
+      </div>
+    </div>
+    <div class="stats part">
+      <div class="stat"><b>642852</b><span>California licence<br>General Building</span></div>
+      <div class="stat"><b>5.0<span class="u"> / 5</span></b><span>From 17 Google<br>reviews</span></div>
+      <div class="stat"><b>12</b><span>Cities covered<br>across the valley</span></div>
+      <div class="stat"><b>$100k</b><span>Upper end of a job<br>from a single repair</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= 2. SERVICES -->
+<section class="sec svc" id="services">
+  <div class="wrap" data-rv>
+    <div class="head">
+      <div>
+        <p class="kick part">What we do</p>
+        <h2 class="big part" style="margin-top:20px">Five trades and<br>the one that ties them.</h2>
+      </div>
+      <p class="lede part">Everything below is work HIBM already does, in the order most owners run into it. One crew, one number, one invoice, whichever of these the job turns out to need.</p>
+    </div>
+    <div class="cards">
+      <article class="card part">
+        <div class="ph"><img src="assets/carpentry.webp" srcset="assets/carpentry-sm.webp 750w, assets/carpentry.webp 1500w" sizes="(min-width:1040px) 380px, (min-width:680px) 46vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="Finish carpentry: a fitted cabinet run with a hand plane and tools on the counter."></div>
+        <div class="bd">
+          <h3><span class="tick" aria-hidden="true"></span>Carpentry and remodels</h3>
+          <p>Kitchens, bathrooms and home improvements, plus the finish work that decides whether a room reads as finished or nearly finished.</p>
+          <ul><li>Finish carpentry</li><li>Cabinets and counter tops</li><li>Windows and doors</li><li>Decking and fencing</li></ul>
+        </div>
+      </article>
+      <article class="card part">
+        <div class="ph"><img src="assets/plumbing.webp" srcset="assets/plumbing-sm.webp 750w, assets/plumbing.webp 1500w" sizes="(min-width:1040px) 380px, (min-width:680px) 46vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="Plumbing rough-in: a copper manifold and colour-coded supply lines run through wall studs."></div>
+        <div class="bd">
+          <h3><span class="tick" aria-hidden="true"></span>Plumbing and HVAC</h3>
+          <p>Repairs and installation, in occupied homes and in units with a tenant still working in them.</p>
+          <ul><li>Plumbing repairs</li><li>HVAC service</li><li>Fixtures and faucets</li><li>Water proofing</li></ul>
+        </div>
+      </article>
+      <article class="card part">
+        <div class="ph"><img src="assets/electrical.webp" srcset="assets/electrical-sm.webp 750w, assets/electrical.webp 1500w" sizes="(min-width:1040px) 380px, (min-width:680px) 46vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="Parking lot lighting at dusk: a pole light and a wall fitting lit beside a commercial entrance."></div>
+        <div class="bd">
+          <h3><span class="tick" aria-hidden="true"></span>Electrical and lighting</h3>
+          <p>The lighting most contractors will not come out for: the pole in the lot, the fitting over the back door, the sign that half works.</p>
+          <ul><li>Parking lot lighting</li><li>Security lighting</li><li>Storefront sign lighting</li><li>Low voltage electrical</li></ul>
+        </div>
+      </article>
+      <article class="card part">
+        <div class="ph"><img src="assets/painting.webp" srcset="assets/painting-sm.webp 750w, assets/painting.webp 1500w" sizes="(min-width:1040px) 380px, (min-width:680px) 46vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="A freshly painted interior wall and baseboard with hard afternoon light raking across it."></div>
+        <div class="bd">
+          <h3><span class="tick" aria-hidden="true"></span>Painting and surfaces</h3>
+          <p>Inside and out, plus the wall behind the paint: drywall, ceilings, stucco and the graffiti that keeps coming back.</p>
+          <ul><li>Painting, interior and exterior</li><li>Pressure washing</li><li>Graffiti removal</li><li>Drywall, stucco, acoustic ceilings</li></ul>
+        </div>
+      </article>
+      <article class="card part">
+        <div class="ph"><img src="assets/roofing.webp" srcset="assets/roofing-sm.webp 750w, assets/roofing.webp 1500w" sizes="(min-width:1040px) 380px, (min-width:680px) 46vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="A flat roof edge and gutter line seen against a golden hour sky over the valley."></div>
+        <div class="bd">
+          <h3><span class="tick" aria-hidden="true"></span>Roofing and gutters</h3>
+          <p>Finding a leak is most of fixing a leak. We trace it to where the water actually gets in, then stop it there.</p>
+          <ul><li>Roof leak trouble shooting</li><li>Roof repairs</li><li>Gutter cleaning and repairs</li><li>Water proofing</li></ul>
+        </div>
+      </article>
+      <article class="card part">
+        <div class="ph"><img src="assets/maintenance.webp" srcset="assets/maintenance-sm.webp 750w, assets/maintenance.webp 1500w" sizes="(min-width:1040px) 380px, (min-width:680px) 46vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="The inside of a work van fitted out with organised tool racks and a ladder, doors open to evening light."></div>
+        <div class="bd">
+          <h3><span class="tick" aria-hidden="true"></span>Building maintenance</h3>
+          <p>The standing arrangement: the repairs, the odd jobs and the special projects that keep a building working all year.</p>
+          <ul><li>Repairs and trouble shooting</li><li>Flooring, carpet to hardwood</li><li>Professional handyman work</li><li>Project and construction management</li></ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== 3. PUNCH LIST -->
+<section class="sec punch" id="punchlist">
+  <div class="wrap" data-rv>
+    <div class="in">
+      <p class="kick part">The idea, in one go</p>
+      <h2 class="big part">A list like the one<br>on your desk.</h2>
+      <p class="lede part">Five jobs, five trades, and normally five phone calls. Hold the button and watch it clear.</p>
+      <ul class="plist part" id="plist">
+        <li class="pli"><span class="tick" aria-hidden="true"></span><span class="tx">Stop the roof leak</span></li>
+        <li class="pli"><span class="tick" aria-hidden="true"></span><span class="tx">Rehang the sagging gutter</span></li>
+        <li class="pli"><span class="tick" aria-hidden="true"></span><span class="tx">Fix the light that keeps going out</span></li>
+        <li class="pli"><span class="tick" aria-hidden="true"></span><span class="tx">Patch and repaint the back wall</span></li>
+        <li class="pli"><span class="tick" aria-hidden="true"></span><span class="tx">Redo the bathroom</span></li>
+      </ul>
+      <div class="holdrow part">
+        <button class="hold" id="hold" type="button" aria-describedby="holdhint">
+          <span class="fill" aria-hidden="true"></span><span class="lb">Press and hold to clear the list</span>
+        </button>
+        <span class="hint" id="holdhint">Or just call and read it out</span>
+      </div>
+      <p class="done-line" id="doneline">That is one visit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================== 4. WHY -->
+<section class="sec on-slate why" id="why">
+  <div class="wrap" data-rv>
+    <div class="head">
+      <p class="kick part">Why HIBM</p>
+      <h2 class="big part" style="margin-top:20px">Four things people<br>actually want to know.</h2>
+    </div>
+    <div class="grid4 part">
+      <div class="it">
+        <p class="n">01</p>
+        <h3><span class="tick" aria-hidden="true"></span>Licensed and checkable</h3>
+        <p>California licence 642852, General Building. The number is right there. Look it up on the CSLB register before you call anyone, including us.</p>
+      </div>
+      <div class="it">
+        <p class="n">02</p>
+        <h3><span class="tick" aria-hidden="true"></span>One crew, every trade</h3>
+        <p>Carpentry, plumbing, electrical, painting, roofing and maintenance under one licence. Nobody gets handed off, and nobody blames the last trade.</p>
+      </div>
+      <div class="it">
+        <p class="n">03</p>
+        <h3><span class="tick" aria-hidden="true"></span>We clean up</h3>
+        <p>Customers keep writing the same word about our work: tidy. The place gets left the way you would want to walk back into it, at the end of every day.</p>
+      </div>
+      <div class="it">
+        <p class="n">04</p>
+        <h3><span class="tick" aria-hidden="true"></span>Small jobs welcome</h3>
+        <p>A sticking closet door and a full remodel get the same crew. Small jobs are most of what we do, and they are how most customers meet us.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= 5. WORK -->
+<section class="sec work" id="work">
+  <div class="wrap" data-rv>
+    <div class="head">
+      <div>
+        <p class="kick part">The work</p>
+        <h2 class="big part" style="margin-top:20px">What the trades<br>look like finished.</h2>
+      </div>
+      <p class="lede part">Tenant improvements, remodels and the maintenance work in between, across San Jose and the surrounding valley.</p>
+    </div>
+    <div class="wgrid part">
+      <figure class="wc w1" style="margin:0"><img src="assets/tenant.webp" srcset="assets/tenant-sm.webp 750w, assets/tenant.webp 1500w" sizes="(min-width:760px) 62vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="A finished tenant space with polished floors running toward a glass storefront."><figcaption class="lab"><b>Turnkey tenant improvements</b><span>Commercial and strip mall</span></figcaption></figure>
+      <figure class="wc w2" style="margin:0"><img src="assets/bath.webp" srcset="assets/bath-sm.webp 750w, assets/bath.webp 1500w" sizes="(min-width:760px) 30vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="A completed bathroom remodel with a freestanding tub and warm lighting."><figcaption class="lab"><b>Bathroom remodels</b><span>Residential</span></figcaption></figure>
+      <figure class="wc w3" style="margin:0"><img src="assets/kitchen.webp" srcset="assets/kitchen-sm.webp 750w, assets/kitchen.webp 1500w" sizes="(min-width:760px) 30vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="A completed kitchen remodel with fitted cabinets and a stone counter."><figcaption class="lab"><b>Kitchen remodels</b><span>Residential</span></figcaption></figure>
+      <figure class="wc w4" style="margin:0"><img src="assets/exterior.webp" srcset="assets/exterior-sm.webp 750w, assets/exterior.webp 1500w" sizes="(min-width:760px) 62vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="A single storey building exterior in fresh stucco and paint at golden hour."><figcaption class="lab"><b>Stucco, siding and exterior paint</b><span>Home improvements</span></figcaption></figure>
+      <figure class="wc w5" style="margin:0"><img src="assets/electrical.webp" srcset="assets/electrical-sm.webp 750w, assets/electrical.webp 1500w" sizes="(min-width:760px) 46vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="Parking lot and security lighting lit at dusk beside a commercial building."><figcaption class="lab"><b>Parking lot and security lighting</b><span>Building maintenance</span></figcaption></figure>
+      <figure class="wc w6" style="margin:0"><img src="assets/roofing.webp" srcset="assets/roofing-sm.webp 750w, assets/roofing.webp 1500w" sizes="(min-width:760px) 46vw, 92vw" width="1500" height="1000" loading="lazy" decoding="async" alt="A roof edge and gutter line above the valley at sunset."><figcaption class="lab"><b>Roof leaks, gutters, waterproofing</b><span>Repairs</span></figcaption></figure>
+    </div>
+    <p class="note part">Photography of recent HIBM jobs is being collected. Until it is ready, these images show the trades we cover rather than specific projects, and they are AI generated. They will be swapped for real job photos as those come in.</p>
+  </div>
+</section>
+
+<!-- ====================================================== 6. REVIEWS -->
+<section class="sec rev" id="reviews">
+  <div class="wrap" data-rv>
+    <div class="head">
+      <div>
+        <p class="kick part">In their words</p>
+        <h2 class="big part" style="margin-top:20px">Customers keep saying<br>the same three things.</h2>
+      </div>
+      <div class="score part">
+        <b>5.0</b>
+        <div>
+          <div class="st" aria-hidden="true">
+            <svg viewBox="0 0 20 20"><path d="M10 1.6l2.5 5.4 5.9.7-4.4 4 1.2 5.8L10 14.6 4.8 17.5 6 11.7 1.6 7.7l5.9-.7z" fill="currentColor"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1.6l2.5 5.4 5.9.7-4.4 4 1.2 5.8L10 14.6 4.8 17.5 6 11.7 1.6 7.7l5.9-.7z" fill="currentColor"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1.6l2.5 5.4 5.9.7-4.4 4 1.2 5.8L10 14.6 4.8 17.5 6 11.7 1.6 7.7l5.9-.7z" fill="currentColor"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1.6l2.5 5.4 5.9.7-4.4 4 1.2 5.8L10 14.6 4.8 17.5 6 11.7 1.6 7.7l5.9-.7z" fill="currentColor"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1.6l2.5 5.4 5.9.7-4.4 4 1.2 5.8L10 14.6 4.8 17.5 6 11.7 1.6 7.7l5.9-.7z" fill="currentColor"/></svg>
+          </div>
+          <span>17 reviews on Google</span>
+        </div>
+      </div>
+    </div>
+    <div class="quotes">
+      <figure class="q part">
+        <p class="mk" aria-hidden="true">&ldquo;</p>
+        <blockquote>I'm very happy with the job that Tony did to stop the water leak from the exterior of the house into my bathroom and living room. It's obvious he has a wealth of experience because he was able to quickly and accurately deduce the source and reason of the leak before starting the job. He was patient in explaining to me the issue and what he would be doing first.</blockquote>
+        <figcaption><b>Dan Tong</b> <span>Google review</span></figcaption>
+      </figure>
+      <figure class="q part">
+        <p class="mk" aria-hidden="true">&ldquo;</p>
+        <blockquote>Tony did another fairly small but important project for me today, fixing a couple sets of sliding closet doors that have not operated properly for many years. As always, he was exceptionally responsive, on-time, very tidy w the work and got the job done in a reasonable time. He's skilled in many areas and I highly recommend him for most any home improvement project, large or small.</blockquote>
+        <figcaption><b>Tom Baker</b> <span>Google review</span></figcaption>
+      </figure>
+      <figure class="q part">
+        <p class="mk" aria-hidden="true">&ldquo;</p>
+        <blockquote>Highly recommend Tony! Once I contacted him, he promptly replied, made an appointment to visit and arrived few mins before time, which I appreciate. He fixed all the things I needed within an hour, ran out to get replacement switches (for which he did not charge me anything) and got the job done. Very impressed with his professionalism. Will hire him again!</blockquote>
+        <figcaption><b>Rashi Singhania</b> <span>Google review</span></figcaption>
+      </figure>
+      <figure class="q part">
+        <p class="mk" aria-hidden="true">&ldquo;</p>
+        <blockquote>So glad Tony was able to come by on such short notice to help us with our doors! He got straight to work and was extremely informative during the process. Our door handles were tricky but Tony was determined and managed to get both of them working. We initially thought we'd have to replace the entire door but thankfully we didn't have to go that route. Great experience, great service. Thank you!</blockquote>
+        <figcaption><b>Janette Nakamoto</b> <span>Google review</span></figcaption>
+      </figure>
+      <figure class="q part">
+        <p class="mk" aria-hidden="true">&ldquo;</p>
+        <blockquote>Tony has been exceptional in handling balcony repairs for me. Honest, thorough, and very diligent in keeping me informed every step of the way through work that needed a lot of coordination with city, and HOA. Very happy with his work as well. Definitely calling Tony for other jobs in the future.</blockquote>
+        <figcaption><b>D Ramesh</b> <span>Google review</span></figcaption>
+      </figure>
+      <figure class="q part">
+        <p class="mk" aria-hidden="true">&ldquo;</p>
+        <blockquote>HIBM Const. has been great! Our go to people for anything that needs to be done. They are quick, courteous, and leave the place clean and tidy after they're done for the day. It's nice to know of a business like this that we can rely on.</blockquote>
+        <figcaption><b>Sandy</b> <span>Los Gatos</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== 7. AREAS -->
+<section class="sec areas" id="areas">
+  <div class="wrap" data-rv>
+    <div class="in">
+      <div>
+        <p class="kick part">Areas covered</p>
+        <h2 class="big part" style="margin-top:20px;font-size:clamp(28px,3.4vw,42px)">Across the valley,<br>from San Jose.</h2>
+        <p class="lede part" style="margin-top:20px;font-size:16px">If your address is not on the list, call anyway. It is a short drive from most of it.</p>
+      </div>
+      <ul class="alist part">
+        <li><span class="tick" aria-hidden="true"></span>San Jose</li>
+        <li><span class="tick" aria-hidden="true"></span>Campbell</li>
+        <li><span class="tick" aria-hidden="true"></span>Los Gatos</li>
+        <li><span class="tick" aria-hidden="true"></span>Los Altos</li>
+        <li><span class="tick" aria-hidden="true"></span>Morgan Hill</li>
+        <li><span class="tick" aria-hidden="true"></span>Palo Alto</li>
+        <li><span class="tick" aria-hidden="true"></span>Cupertino</li>
+        <li><span class="tick" aria-hidden="true"></span>Sunnyvale</li>
+        <li><span class="tick" aria-hidden="true"></span>Saratoga</li>
+        <li><span class="tick" aria-hidden="true"></span>Portola Valley</li>
+        <li><span class="tick" aria-hidden="true"></span>Mountain View</li>
+        <li><span class="tick" aria-hidden="true"></span>Santa Clara</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================== 8. FAQ -->
+<section class="sec faq" id="faq">
+  <div class="wrap" data-rv>
+    <div class="in">
+      <div>
+        <p class="kick part">Straight answers</p>
+        <h2 class="big part" style="margin-top:20px;font-size:clamp(28px,3.4vw,42px)">The questions<br>we get asked.</h2>
+      </div>
+      <div class="acc part">
+        <details>
+          <summary>Are you licensed?</summary>
+          <div class="ans">Yes. California licence 642852, General Building, held by Michael Anthony Guidotti. You can check it yourself on the <a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/checklicense.aspx" target="_blank" rel="noopener">CSLB licence register</a> before you call anyone, and you should.</div>
+        </details>
+        <details>
+          <summary>Will you actually show up and finish?</summary>
+          <div class="ans">That is the whole complaint about this trade, and it is fair. What we can point at: a 5.0 rating from 17 reviews on Google, written by customers using their own names, and a BuildZoom score of 97, which puts us in the top 18 percent of 336,931 licensed contractors in California.</div>
+        </details>
+        <details>
+          <summary>Is my job too small?</summary>
+          <div class="ans">No. Small jobs are most of what we do. A sticking door and a full remodel get the same crew, and plenty of long standing customers started with a job that took an hour.</div>
+        </details>
+        <details>
+          <summary>Do you work on rentals and tenant spaces?</summary>
+          <div class="ans">Often. Turnkey tenant improvements, strip mall work, and repairs carried out with a tenant still in the unit. Coordination with a city or an HOA is part of the job when the work needs it.</div>
+        </details>
+        <details>
+          <summary>What does it cost?</summary>
+          <div class="ans">Jobs run from a single repair up to about $100,000. Send a photo and a line about what you need, and you get a number back.</div>
+        </details>
+        <details>
+          <summary>Which areas do you cover?</summary>
+          <div class="ans">San Jose, Campbell, Los Gatos, Los Altos, Morgan Hill, Palo Alto, Cupertino, Sunnyvale, Saratoga, Portola Valley, Mountain View and Santa Clara.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== 9. CONTACT -->
+<section class="sec on-slate cta-sec" id="quote">
+  <div class="wrap" data-rv>
+    <div class="in">
+      <div>
+        <p class="kick part">Request a quote</p>
+        <h2 class="big part" style="margin-top:20px">Tell us what is<br>on the list.</h2>
+        <p class="lede part" style="margin-top:20px">Fill this in and it opens an email to us with your details already written. Or skip it and call, which is usually faster.</p>
+        <form class="part" id="qf" novalidate>
+          <div class="f2">
+            <div><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Jane Doe"></div>
+            <div><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(408) 000-0000"></div>
+          </div>
+          <div class="f2">
+            <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required placeholder="jane@example.com"></div>
+            <div><label for="f-type">Type of work</label>
+              <select id="f-type" name="type">
+                <option>Not sure yet</option>
+                <option>Carpentry or remodel</option>
+                <option>Plumbing or HVAC</option>
+                <option>Electrical or lighting</option>
+                <option>Painting or surfaces</option>
+                <option>Roofing, gutters or leaks</option>
+                <option>Building maintenance</option>
+                <option>Tenant improvement</option>
+              </select>
+            </div>
+          </div>
+          <div><label for="f-msg">What needs doing</label><textarea id="f-msg" name="message" required placeholder="The gutter on the north side has come away, and there is a light in the car park that keeps tripping."></textarea></div>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+            <button class="btn btn-p" type="submit">Send this to HIBM <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <span class="fstate" id="fstate" role="status" aria-live="polite"></span>
+          </div>
+          <p class="fnote">This form opens your own email app with the message ready to send, so nothing is stored on this website.</p>
+        </form>
+      </div>
+
+      <div class="part">
+        <div class="direct">
+          <a href="tel:+14083154663"><span class="lb">Call us</span><span class="vl">(408) 315-4663</span></a>
+          <a href="mailto:hibmconstruction@gmail.com"><span class="lb">Email us</span><span class="vl">hibmconstruction@gmail.com</span></a>
+          <div><span class="lb">Find us</span><span class="vl" style="font-size:19px;line-height:1.4">4250 Wessex Drive<br>San Jose, CA 95136</span></div>
+        </div>
+        <div class="hours">
+          <h4 class="lb" style="font-family:'JetBrains Mono';font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-slate-dim);font-weight:500">Opening hours</h4>
+          <dl>
+            <dt>Mon</dt><dd>7:00 to 17:30</dd>
+            <dt>Tue</dt><dd>7:30 to 17:30</dd>
+            <dt>Wed</dt><dd>7:00 to 16:30</dd>
+            <dt>Thu</dt><dd>7:00 to 17:30</dd>
+            <dt>Fri</dt><dd>7:00 to 17:30</dd>
+            <dt>Sat</dt><dd>8:00 to 16:00</dd>
+            <dt>Sun</dt><dd>Closed</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="fbrand" href="#top">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4.6 5.8 L27.3 4.7 L28.4 27.4 L5.7 28.5 Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.6 16.5 L14.2 21.4 L23 9.8" fill="none" stroke="#E85F3D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="display:block"><b>HIBM</b><span>Construction</span></span>
+        </a>
+        <p class="fx">Full service general contractor in San Jose. No job too small. We fix it all.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#areas">Areas covered</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+14083154663">(408) 315-4663</a></li>
+          <li><a href="mailto:hibmconstruction@gmail.com">hibmconstruction@gmail.com</a></li>
+          <li><a href="#quote">Request a quote</a></li>
+        </ul>
+        <h4 style="margin-top:26px">Licence</h4>
+        <ul><li><a href="https://www.cslb.ca.gov/onlineservices/checklicenseII/checklicense.aspx" target="_blank" rel="noopener">CA 642852, General Building</a></li></ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>&copy; <span id="yr">2026</span> HIBM Construction. 4250 Wessex Drive, San Jose, CA 95136.</p>
+      <p>CA licence 642852</p>
+    </div>
+    <p class="disc">Imagery note: the film and photographs on this site are AI generated and stand in for HIBM's own job photography while it is being collected. They show the trades HIBM covers, not specific past projects. Every fact stated on this page, the licence number, the review quotes, the service list, the areas covered and the contact details, comes from HIBM's own records and from public listings.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+/* ------------------------------------------------------------- helpers */
+var $ = function(s,c){ return (c||document).querySelector(s); };
+var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+var clamp = function(v,lo,hi){ return Math.min(hi, Math.max(lo, v)); };
+var smoothstep = function(p,e0,e1){ var t = clamp((p-e0)/(e1-e0),0,1); return t*t*(3-2*t); };
+function rng(seed){ var s = seed>>>0; return function(){ s = (s*1664525 + 1013904223)>>>0; return s/4294967296; }; }
+
+document.getElementById('yr').textContent = String(new Date().getFullYear());
+
+/* --------------------------------------------------- signature: the tick */
+var TICK = '<svg viewBox="0 0 24 24" aria-hidden="true">'
+  + '<path class="bx" d="M3.4 4.3 L20.3 3.4 L21.1 20.3 L4.2 21.2 Z"/>'
+  + '<path class="ck" d="M6.6 12.5 L10.7 16.9 L18.2 6.9"/></svg>';
+$$('.tick').forEach(function(el){ el.innerHTML = TICK; });
+
+/* ------------------------------------------------------ reveal on scroll */
+var rvo = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if (!e.isIntersecting) return;
+    var el = e.target;
+    el.classList.add('in');
+    rvo.unobserve(el);
+    setTimeout(function(){ el.classList.add('rvdone'); }, 1800);
+  });
+}, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+$$('[data-rv]').forEach(function(el){ rvo.observe(el); });
+
+/* ------------------------------------------------------------------ nav */
+var nav = document.getElementById('nav');
+var heroEl = null, solidAt = 40, navSolid = null;
+function measureHero(){
+  if (!heroEl || !heroEl.isConnected || heroEl.offsetHeight === 0){
+    heroEl = $$('.hero, .shero').filter(function(el){ return el.offsetHeight > 0; })[0] || null;
+  }
+  var h = heroEl ? (heroEl.classList.contains('hero') ? window.innerHeight : heroEl.offsetHeight) : 0;
+  solidAt = h ? Math.max(40, h - 96) : 40;
+}
+function navTick(){
+  var s = window.scrollY > solidAt;
+  if (s !== navSolid){ navSolid = s; nav.classList.toggle('solid', s); }
+}
+measureHero(); navTick();
+addEventListener('scroll', navTick, { passive:true });
+addEventListener('resize', function(){ measureHero(); navTick(); }, { passive:true });
+
+/* -------------------------------------------------------- text splitting */
+function splitAll(){
+  $$('.vis[data-split]').forEach(function(el){
+    if (el.dataset.done) return;
+    el.dataset.done = '1';
+    var mode = el.dataset.split;
+    var band = el.closest('.band');
+    var spread = parseFloat(band && band.dataset.spread) || 0.42;
+    var r = rng(20260910);
+    var text = el.textContent;
+    var lines = text.split('\n');
+    el.textContent = '';
+    var total = text.replace(/\s/g,'').length, idx = 0;
+    lines.forEach(function(line, li){
+      if (li) el.appendChild(document.createElement('br'));
+      var words = line.split(' ');
+      words.forEach(function(word, wi){
+        var w = document.createElement('span');
+        w.className = 'w';
+        if (mode === 'word'){
+          w.style.setProperty('--th', ((li*words.length + wi) * spread / Math.max(1, words.length*lines.length)).toFixed(4));
+          w.textContent = word + (wi < words.length-1 ? ' ' : '');
+        } else {
+          var chars = (word + (wi < words.length-1 ? ' ' : '')).split('');
+          chars.forEach(function(ch){
+            var c = document.createElement('span');
+            c.className = 'c';
+            var th = (idx/Math.max(1,total)) * spread + r()*0.06;
+            c.style.setProperty('--th', th.toFixed(4));
+            c.style.setProperty('--jx', ((r()*2-1)*34).toFixed(1) + 'px');
+            c.textContent = ch;
+            w.appendChild(c);
+            if (!/\s/.test(ch)) idx++;
+          });
+        }
+        el.appendChild(w);
+      });
+    });
+  });
+}
+splitAll();
+
+/* ------------------------------------------------------------ the hero */
+var hero  = document.getElementById('hero');
+var stage = document.getElementById('stage');
+var video = document.getElementById('hv');
+var poster= $('.poster', stage);
+var ringw = document.getElementById('ringwrap');
+var ring  = $('.ring circle:last-child', ringw);
+var scut  = document.getElementById('scut');
+var bands = $$('.band').map(function(el){
+  return { el: el,
+    a: parseFloat(el.dataset.a), b: parseFloat(el.dataset.b),
+    ramp: parseFloat(el.dataset.ramp) || 0,
+    op: -1, k: -1 };
+});
+
+var VIDEO_URL = 'assets/hero-scrub.mp4';
+var VIDEO_BYTES = 9093251;
+var POSTER_URL = 'assets/hero-poster.jpg';
+
+var target = 0, shown = 0, rafId = null, lastTick = 0;
+var heroOnScreen = true, scrubOn = false, inited = false;
+var seekBusy = false, pendingTime = null;
+var loadK = 0, loadStart = 0, loadRaf = null;
+
+function heroProgress(){
+  if (!hero || hero.offsetHeight === 0) return 0;
+  var range = hero.offsetHeight - window.innerHeight;
+  if (range <= 0) return 0;
+  return clamp((window.scrollY - hero.offsetTop) / range, 0, 1);
+}
+
+function requestSeek(t){
+  if (!video.duration) return;
+  if (seekBusy){ pendingTime = t; return; }
+  seekBusy = true;
+  try { video.currentTime = t; } catch(e){ seekBusy = false; }
+}
+video.addEventListener('seeked', function(){
+  seekBusy = false;
+  if (pendingTime !== null){ var t = pendingTime; pendingTime = null; requestSeek(t); }
+});
+video.addEventListener('error', function(){ seekBusy = false; pendingTime = null; failVideo(); });
+
+function updateCaptions(p){
+  for (var i=0;i<bands.length;i++){
+    var B = bands[i], a = B.a, b = B.b;
+    var f = Math.min(0.02, (b-a)/3);
+    var inEase  = (i === 0) ? 1 : smoothstep(p, a, a+f);
+    var outEase = (i === bands.length-1) ? 1 : (1 - smoothstep(p, b-f, b));
+    var op = inEase * outEase;
+    if (p < a - f || p > b + f) op = 0;
+    var ramp = B.ramp || Math.min(0.025, (b-a)*0.35);
+    var k = clamp((p - a)/ramp, 0, 1);
+    if (i === 0) k = Math.max(k, loadK);
+    if (Math.abs(op - B.op) > 0.004){ B.op = op; B.el.style.opacity = op.toFixed(3); }
+    if (Math.abs(k - B.k) > 0.008){ B.k = k; B.el.style.setProperty('--k', k.toFixed(3)); }
+  }
+  if (scut) scut.classList.toggle('gone', p > 0.03);
+}
+
+function tick(now){
+  var dt = Math.min(100, now - (lastTick || now));
+  lastTick = now;
+  var k = 0.16;
+  shown += (target - shown) * (1 - Math.pow(1-k, dt/16.667));
+  if (Math.abs(target - shown) < 0.0005){ shown = target; rafId = null; lastTick = 0; }
+  else { rafId = requestAnimationFrame(tick); }
+  if (video.duration) requestSeek(shown * video.duration);
+  updateCaptions(shown);
+}
+function onScroll(){
+  target = heroProgress();
+  if (rafId === null && heroOnScreen) rafId = requestAnimationFrame(tick);
+}
+
+function makeScrollChevron(){
+  var d = document.createElement('div');
+  d.className = 'chev';
+  return d;
+}
+function failVideo(){
+  if (ring && ring.parentNode && ringw.dataset.failed !== '1'){
+    ringw.dataset.failed = '1';
+    ringw.innerHTML = '';
+    ringw.appendChild(makeScrollChevron());
+  }
+  stage.classList.add('video-failed');
+}
+
+async function loadHeroBlob(){
+  var ctrl = new AbortController();
+  var watchdog = setTimeout(function(){ ctrl.abort(); }, 20000);
+  var res = await fetch(VIDEO_URL, { signal: ctrl.signal });
+  if (!res.ok || !res.body) throw new Error('video ' + res.status);
+  var total = Number(res.headers.get('Content-Length')) || VIDEO_BYTES;
+  var reader = res.body.getReader();
+  var chunks = [], got = 0, lastRing = 0;
+  for(;;){
+    var r = await reader.read();
+    if (r.done) break;
+    clearTimeout(watchdog);
+    watchdog = setTimeout(function(){ ctrl.abort(); }, 20000);
+    chunks.push(r.value); got += r.value.length;
+    var frac = Math.min(1, got/total), now = performance.now();
+    if (now - lastRing > 100 || frac === 1){
+      lastRing = now;
+      if (ring) ring.style.setProperty('--ld', String(Math.round(126*(1-frac))));
+    }
+  }
+  clearTimeout(watchdog);
+  if (ring) ring.style.setProperty('--ld', '0');
+  video.src = URL.createObjectURL(new Blob(chunks, { type:'video/mp4' }));
+  video.load();
+  video.addEventListener('canplay', function(){
+    requestSeek(heroProgress() * video.duration);
+    stage.classList.add('video-ready');
+  }, { once:true });
+}
+
+var started = false;
+function startBlobFetch(){
+  if (started) return;
+  started = true;
+  loadHeroBlob().catch(failVideo);
+}
+
+function initHeroOnce(){
+  if (inited) return;
+  inited = true;
+  poster.style.backgroundImage = "url('" + POSTER_URL + "')";
+  var pi = new Image();
+  pi.onload = startBlobFetch;
+  pi.onerror = startBlobFetch;
+  pi.src = POSTER_URL;
+  setTimeout(startBlobFetch, 4000);
+
+  loadStart = performance.now();
+  (function ramp(now){
+    loadK = clamp((now - loadStart) / 900, 0, 1);
+    updateCaptions(shown);
+    if (loadK < 1) loadRaf = requestAnimationFrame(ramp); else loadRaf = null;
+  })(performance.now());
+
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ heroOnScreen = es[0].isIntersecting; if (heroOnScreen) onScroll(); },
+      { threshold: 0 }).observe(hero);
+  }
+}
+
+/* ------------------------------------------ the five static-hero gates */
+var GATES = [
+  '(max-width: 720px)',
+  '(orientation: portrait) and (max-width: 1024px)',
+  '(orientation: portrait) and (pointer: coarse)',
+  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
+  '(prefers-reduced-motion: reduce)'
+];
+function enableScrub(){
+  if (scrubOn) return; scrubOn = true;
+  initHeroOnce();
+  addEventListener('scroll', onScroll, { passive:true });
+  bands.forEach(function(b){ b.op = -1; b.k = -1; });
+  unpinFinalStates();
+  updateCaptions(heroProgress());
+  measureHero(); navTick();
+  onScroll();
+}
+function disableScrub(){
+  if (!scrubOn) return; scrubOn = false;
+  removeEventListener('scroll', onScroll);
+  if (rafId !== null){ cancelAnimationFrame(rafId); rafId = null; }
+  measureHero(); navTick();
+}
+function applyHeroMode(){
+  if (GATES.some(function(q){ return matchMedia(q).matches; })) disableScrub();
+  else enableScrub();
+}
+var MQLS = GATES.map(function(q){ return matchMedia(q); });
+MQLS.forEach(function(m){
+  if (m.addEventListener) m.addEventListener('change', applyHeroMode);
+  else if (m.addListener) m.addListener(applyHeroMode);
+});
+
+/* --------------------------------------- static hero image (gated path) */
+(function(){
+  var sh = document.getElementById('shero');
+  var pic = $('.pic', sh);
+  var wantStatic = GATES.some(function(q){ return matchMedia(q).matches; });
+  function paint(){ if (pic && !pic.dataset.on){ pic.dataset.on = '1'; pic.style.backgroundImage = "url('assets/hero-end.jpg')"; } }
+  if (wantStatic) paint();
+  MQLS.forEach(function(m){
+    var h = function(){ if (GATES.some(function(q){ return matchMedia(q).matches; })) paint(); };
+    if (m.addEventListener) m.addEventListener('change', h); else if (m.addListener) m.addListener(h);
+  });
+})();
+
+/* ------------------------------------------- the punch list interaction */
+var punch  = document.getElementById('punchlist');
+var holdBtn= document.getElementById('hold');
+var items  = $$('.pli', punch);
+var prog = 0, holding = false, hRaf = null, hLast = 0, lastLocals = [];
+var STEP = 0.19, WIN = 0.24;
+
+function paintPunch(force){
+  for (var i=0;i<items.length;i++){
+    var local = clamp((prog - i*STEP)/WIN, 0, 1);
+    if (!force && Math.abs(local - (lastLocals[i] || 0)) < 0.01) continue;
+    lastLocals[i] = local;
+    var tx = $('.tx', items[i]);
+    var ck = $('.tick .ck', items[i]);
+    if (ck) ck.style.strokeDashoffset = String((19*(1-local)).toFixed(2));
+    if (tx) tx.style.setProperty('--l', local.toFixed(3));
+    items[i].classList.toggle('cl', local > 0.92);
+  }
+  if (holdBtn) holdBtn.style.setProperty('--p', prog.toFixed(3));
+  punch.classList.toggle('done', prog >= 0.999);
+}
+function hTick(now){
+  var dt = Math.min(60, now - (hLast || now)); hLast = now;
+  prog = clamp(prog + (holding ? dt/1500 : -dt/950), 0, 1);
+  paintPunch(false);
+  if ((holding && prog < 1) || (!holding && prog > 0)){ hRaf = requestAnimationFrame(hTick); }
+  else { hRaf = null; hLast = 0; }
+}
+function hStart(e){ if (e.cancelable) e.preventDefault(); holding = true; if (hRaf === null) hRaf = requestAnimationFrame(hTick); }
+function hStop(){ holding = false; if (hRaf === null && prog > 0) hRaf = requestAnimationFrame(hTick); }
+if (holdBtn){
+  ['pointerdown'].forEach(function(t){ holdBtn.addEventListener(t, hStart); });
+  ['pointerup','pointercancel','pointerleave','blur'].forEach(function(t){ holdBtn.addEventListener(t, hStop); });
+  holdBtn.addEventListener('keydown', function(e){ if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); hStart(e); } });
+  holdBtn.addEventListener('keyup', function(e){ if (e.key === ' ' || e.key === 'Enter') hStop(); });
+}
+
+/* --------------------------------------------------- reduced motion pins */
+var pinned = false;
+function pinToFinalStates(){
+  pinned = true;
+  $$('[data-rv]').forEach(function(el){ el.classList.add('in','rvdone'); });
+  prog = 1; holding = false;
+  if (hRaf !== null){ cancelAnimationFrame(hRaf); hRaf = null; }
+  paintPunch(true);
+  if (loadRaf !== null){ cancelAnimationFrame(loadRaf); loadRaf = null; }
+  loadK = 1;
+}
+function unpinFinalStates(){
+  if (!pinned) return;
+  pinned = false;
+  prog = 0; lastLocals = [];
+  paintPunch(true);
+}
+var rmq = matchMedia('(prefers-reduced-motion: reduce)');
+function onRM(e){ if (e.matches) pinToFinalStates(); else applyHeroMode(); }
+if (rmq.addEventListener) rmq.addEventListener('change', onRM); else if (rmq.addListener) rmq.addListener(onRM);
+if (rmq.matches) pinToFinalStates();
+
+applyHeroMode();
+paintPunch(true);
+
+/* ------------------------------------------------------- pause off-tab */
+document.addEventListener('visibilitychange', function(){
+  document.body.classList.toggle('paused', document.hidden);
+});
+
+/* -------------------------------------------------------------- form */
+var qf = document.getElementById('qf');
+var fstate = document.getElementById('fstate');
+if (qf){
+  qf.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = qf.name.value.trim(), email = qf.email.value.trim(),
+        phone = qf.phone.value.trim(), type = qf.type.value, msg = qf.message.value.trim();
+    if (!name || !email || !msg){
+      fstate.textContent = 'Please add your name, email and what needs doing.';
+      fstate.classList.add('on');
+      (!name ? qf.name : !email ? qf.email : qf.message).focus();
+      return;
+    }
+    var subject = 'Quote request: ' + type + ' (' + name + ')';
+    var body = 'Name: ' + name + '\nEmail: ' + email + '\nPhone: ' + (phone || 'not given')
+      + '\nType of work: ' + type + '\n\nWhat needs doing:\n' + msg + '\n';
+    fstate.textContent = 'Opening your email app now.';
+    fstate.classList.add('on');
+    window.location.href = 'mailto:hibmconstruction@gmail.com?subject='
+      + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+}
+
+/* ------------------------------------------------------------- ready */
+requestAnimationFrame(function(){ document.body.classList.add('ready'); });
+})();
+</script>
+</body>
+</html>
