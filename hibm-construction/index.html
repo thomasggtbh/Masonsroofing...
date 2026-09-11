@@ -157,14 +157,17 @@ nav.solid .navtel:hover{color:var(--accent-text)}
 .scrim{position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(ellipse 120% 92% at 62% 44%,rgba(10,12,18,0) 30%,rgba(10,12,18,.6) 100%)}
 .vig{position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 86% 74% at 6% 94%,rgba(6,8,13,.86) 0%,rgba(6,8,13,.62) 38%,rgba(6,8,13,.26) 62%,rgba(6,8,13,0) 84%)}
+  background:radial-gradient(ellipse 90% 80% at 6% 94%,rgba(6,8,13,.42) 0%,rgba(6,8,13,.24) 44%,rgba(6,8,13,0) 76%)}
 
 .band{position:absolute;left:0;top:0;width:min(54%,740px);height:100%;
   padding:0 0 clamp(96px,13vh,150px) var(--pad);display:flex;flex-direction:column;justify-content:flex-end;
   color:var(--on-slate);text-shadow:var(--tshadow);opacity:0;pointer-events:none}
-.band::before{content:"";position:absolute;inset:-16% -55% -34% -42%;pointer-events:none;z-index:-1;
+.band::before{content:"";position:absolute;inset:0 -28% 0 0;pointer-events:none;
   opacity:calc(.3 + .7*var(--k,1));
-  background:radial-gradient(ellipse 60% 44% at 34% 76%,rgba(5,6,11,var(--sa,.84)) 0%,rgba(5,6,11,calc(var(--sa,.84)*.7)) 46%,rgba(5,6,11,0) 78%)}
+  background:
+    linear-gradient(90deg,rgba(5,6,11,var(--sa,.72)) 0%,rgba(5,6,11,var(--sa,.72)) 58%,rgba(5,6,11,calc(var(--sa,.72)*.56)) 80%,rgba(5,6,11,0) 100%),
+    linear-gradient(180deg,rgba(5,6,11,0) 30%,rgba(5,6,11,.22) 58%,rgba(5,6,11,.42) 100%)}
+.band>*{position:relative}
 .band.act{pointer-events:auto}
 .band h1,.band h2{font-size:clamp(30px,4.4vw,62px);line-height:1.03;letter-spacing:-.03em}
 .b2 h2,.b3 h2{font-size:clamp(22px,2.7vw,38px);line-height:1.2;letter-spacing:-.016em}
@@ -494,18 +497,18 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <div class="scrim" aria-hidden="true"></div>
     <div class="vig" aria-hidden="true"></div>
 
-    <div class="band b1" data-a="0" data-b="0.19" style="--sa:.84">
+    <div class="band b1" data-a="0" data-b="0.19" style="--sa:.72">
       <h1><span class="sr">No job too small. We fix it all.</span><span class="vis" aria-hidden="true" data-split="word">No job too small.
 We fix it all.</span></h1>
     </div>
 
-    <div class="band b2" data-a="0.24" data-b="0.46" data-spread="0.5" style="--sa:.86">
+    <div class="band b2" data-a="0.24" data-b="0.46" data-spread="0.5" style="--sa:.76">
       <h2><span class="sr">The roof leak. The gutter. The light that keeps going out.</span><span class="vis" aria-hidden="true" data-split="char">The roof leak.
 The gutter.
 The light that keeps going out.</span></h2>
     </div>
 
-    <div class="band b3" data-a="0.51" data-b="0.73" style="--sa:.86">
+    <div class="band b3" data-a="0.51" data-b="0.73" style="--sa:.76">
       <h2 class="stack">
         <span class="sr">That is not four contractors. That is one phone call.</span>
         <span class="soft" aria-hidden="true">That is not four contractors.<br>That is one phone call.</span>
@@ -513,7 +516,7 @@ The light that keeps going out.</span></h2>
       </h2>
     </div>
 
-    <div class="band b4 act" data-a="0.78" data-b="1" data-ramp="0.034" style="--sa:.9">
+    <div class="band b4 act" data-a="0.78" data-b="1" data-ramp="0.034" style="--sa:.8">
       <h2><span class="sr">HIBM Construction</span><span class="vis" aria-hidden="true" data-split="word">HIBM Construction</span></h2>
       <p class="sub">Licensed California general contractor, San Jose. Small repairs and full remodels, handled by one crew.</p>
       <div class="cta">
